@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<!-- Mirrored from templates.hibootstrap.com/gliter/default/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 23 Apr 2022 05:43:22 GMT -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{asset('assets/website/assets/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/website/assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/website/assets/css/fontawsome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/website/assets/fonts/font/flaticon.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/website/assets/css/meanmenu.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/website/assets/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/website/assets/css/nice-select.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/website/assets/css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/website/assets/css/magnific-popup.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/website/assets/css/jquery-ui.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/website/assets/css/odometer.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/website/assets/css/barfiller.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/website/assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/website/assets/css/dark.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/website/assets/css/responsive.css')}}">
+    <title>Creating Star Concept</title>
+    <link rel="icon" type="image/png" href="{{asset('assets/website/assets/images/fav-icon.png')}}')}}">
+    @yield('head')
+</head>
+
+<body>
+    @include('partials.website.navbar')
+
+    @yield('content')
+
+    @include('partials.website.footer')
+</body>
+
+</html>
