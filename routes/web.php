@@ -15,7 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('register_contestant', 'WebsiteController@register');
 Route::post('register', 'WebsiteController@do_register');
-Route::post('register', 'WebsiteController@do_register');
+Route::get('child_right', 'WebsiteController@child_right');
+Route::get('body_part', 'WebsiteController@body_part');
+Route::get('importance_of_child_right', 'WebsiteController@importance_of_child_right');
+Route::get('child_trafficking', 'WebsiteController@child_trafficking');
+Route::get('effect_of_bullying', 'WebsiteController@effect_of_bullying');
+Route::get('terms_conditions', 'WebsiteController@terms_conditions');
 Route::get('/', function () {
     return view('welcome');
 });

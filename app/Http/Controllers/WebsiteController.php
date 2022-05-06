@@ -100,10 +100,21 @@ class WebsiteController extends Controller
     {
         return view('website.causes_of_child_trafficking');
     }
+    public function effect_of_bullying()
+    {
+        return view('website.effect_of_bullying');
+    }
+    public function terms_conditions()
+    {
+        return view('website.terms_conditions');
+    }
+
 
     public function contestants()
     {
         $contest = Contest::latest('id')->where('opened', 1)->first();
         return view('website.contestants', compact('contest'));
     }
+
+    
 }

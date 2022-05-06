@@ -757,7 +757,7 @@
                     <div class="blog-card">
                         <div class="blog-img-area">
                             <a href="{{url('child_trafficking')}}"><img
-                                    src="{{asset('assets/website/assets/images/blog/b1.jpg')}}"
+                                    src="{{asset('assets/website/assets/images/article/types.JPEG')}}"
                                     style="height: 356px !important;width:356px !important" alt="image"></a>
 
                         </div>
@@ -771,27 +771,6 @@
                             <h4><a href="{{url('child_trafficking')}}">Child Trafficking
                                 </a></h4>
                             <a class="default-button default-button-2" href="{{url('child_trafficking')}}">Read More <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog-card">
-                        <div class="blog-img-area">
-                            <a href="{{url('causes_of_child_trafficking')}}"><img
-                                    src="{{asset('assets/website/assets/images/article/types.JPEG')}}"
-                                    style="height: 356px !important;width:356px !important" alt="image"></a>
-
-                        </div>
-                        <div class="blog-text-area">
-                            <div class="blog-date">
-                                <ul>
-                                    <li><i class="far fa-user-circle"></i> By <span>Admin</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h4><a href="{{url('causes_of_child_trafficking')}}">Causes of Child Trafficking
-                                </a></h4>
-                            <a class="default-button default-button-2"
-                                href="{{url('causes_of_child_trafficking')}}">Read More <i
                                     class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>

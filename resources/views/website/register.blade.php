@@ -81,6 +81,11 @@
                     </div>
                 </div>
 
+                <div class="row mb-2">
+                    <label>Terms and Conditions</label>
+                    <label for="terms"><input id="terms" name="agree" type="checkbox" required> Click here to agree to our <a target="_blank" href="{{url('terms_conditions')}}"><span class="text-primary">terms and conditions</span></a> to proceed</label>
+                </div>
+
                 <button type="submit" class="default-button default-button-3 "><span>Submit</span></button>
 
             </div>
