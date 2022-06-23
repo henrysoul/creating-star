@@ -7,6 +7,10 @@ use App\Models\Contest;
 use Illuminate\Support\Str;
 use App\Models\Child;
 use Illuminate\validation\Rule;
+use App\Exports\ChildrenExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\CreatingStarConceptsRegistrationNotification;
 
 
 class AdminController extends Controller
@@ -71,6 +75,15 @@ class AdminController extends Controller
         }
 
 
+        if (strlen($reg_number) == 1) {
+            $reg_copy = '00' . strval($reg_number);
+        } elseif (strlen($reg_number) == 2) {
+            $reg_copy = '0' . strval($reg_number);
+        } else {
+            $reg_copy = strval($reg_number);
+        }
+
+
         if ($request->hasFile('photo')) {
             $photo = $request->photo;
             $generated_name = uniqid() . '.' . $photo->extension();
@@ -80,6 +93,7 @@ class AdminController extends Controller
         Child::create([
             'uuid' => Str::uuid(),
             'reg_number' => $reg_number,
+            'reg_number_copy' => $reg_copy,
             'contest_id' => $contest->id,
             'age' => $request->age,
             'gender' => $request->gender,
@@ -92,7 +106,8 @@ class AdminController extends Controller
             'less_than_a_year' => $request->less_than_a_year
         ]);
 
-        // send mail prefer to queue the mail
+        Notification::route('mail', $request->email)
+            ->notify(new CreatingStarConceptsRegistrationNotification($reg_copy));
         return back()->with('success', 'Contestant created successfully');
     }
 
@@ -162,5 +177,44 @@ class AdminController extends Controller
         ]);
 
         return redirect('contests')->with('success', 'Contestant updated successfully');
+    }
+
+    public function close_current_stage($uuid)
+    {
+        $contest = Contest::where('uuid', $uuid)->first();
+        $current_stage = $contest->active_stage;
+
+        if ($current_stage == 1) {
+            $children = Child::where(['contest_id' => $contest->id])->get();
+            foreach ($children as $child) {
+                if (intval($child->stage1_votes) > intval($contest->stage1_minimum_vote)) {
+                    $stage1_extra = intval($child->stage1_votes) - intval($contest->stage1_minimum_vote);
+                    $child->update(['stage1_extra_votes' => $stage1_extra]);
+                }
+
+                if (intval($child->stage1_votes) >= intval($contest->stage1_minimum_vote)) {
+                    $child->update(['passed_stage1' => 1]);
+                }
+            }
+
+            $contest->update(['stage1_status' => 1]);
+        }
+        if ($current_stage == 2) {
+            $contest->update(['stage2_status' => 1]);
+            if (intval($child->stage2_votes) >= intval($contest->stage2_minimum_vote)) {
+                $child->update(['passed_stage2' => 1]);
+            }
+        }
+        if ($current_stage == 3) {
+            $contest->update(['stage3_status' => 1]);
+        }
+
+        $contest->update(['opened' => 0]);
+
+        return back()->with("success", 'Stage' . $current_stage . 'closed successfully');
+    }
+
+    public function download_records($uuid){
+        return Excel::download(new ChildrenExport($uuid), 'contestants.xlsx');
     }
 }

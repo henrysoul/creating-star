@@ -23,7 +23,7 @@
 <div class="login ptb-100">
     @if($can_register)
     <div class="container">
-        <form method="POST" action="{{url('register')}}" enctype="multipart/form-data">
+        <form method="POST" action="{{url('register_contestant')}}" enctype="multipart/form-data">
             @csrf
             @include('partials.alerts')
             <div class="login-form mb-3">

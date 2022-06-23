@@ -18,6 +18,7 @@ class CreateChildrenTable extends Migration
             $table->string('uuid');
             $table->foreignId('contest_id');
             $table->integer('reg_number');
+            $table->string('reg_number_copy');
             $table->string('name');
             $table->string('parent_name');
             $table->string('address');
@@ -30,6 +31,8 @@ class CreateChildrenTable extends Migration
             $table->integer('stage2_votes')->default(0);
             $table->integer('stage3_votes')->default(0);
             $table->integer('stage1_extra_votes')->default(0);
+            $table->boolean('passed_stage1')->default(0);
+            $table->boolean('passed_stage2')->default(0);
             $table->boolean('active')->default(1);
             $table->string('photo');
             $table->timestamps();

@@ -239,7 +239,7 @@
     });
     
     // language select
-    $("select").niceSelect();
+    // $("select").niceSelect();
 
     // TweenMax JS
     $('.about-img-2,.why-only-img-area-2').mousemove(function(e){

@@ -22,14 +22,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        // return view('auth.register');
-        $contest = Contest::latest('id')->first();
-        $can_register = false;
-        if ($contest?->can_register) {
-            $can_register = true;
-        }
-
-        return view('website.register', compact('can_register'));
+        return view('auth.register');
     }
 
     /**

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('register_contestant', 'WebsiteController@register');
-Route::post('register', 'WebsiteController@do_register');
+Route::post('register_contestant', 'WebsiteController@do_register');
 Route::get('child_right', 'WebsiteController@child_right');
 Route::get('body_part', 'WebsiteController@body_part');
 Route::get('importance_of_child_right', 'WebsiteController@importance_of_child_right');
@@ -40,6 +40,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('update_contestant', 'AdminController@update_contestant');
     Route::post('do_create_contestant', 'AdminController@do_create_contestant');
     Route::get('contestants/{uuid}', 'AdminController@contestants');
+    Route::get('close_current_stage/{uuid}', 'AdminController@close_current_stage');
+    Route::get('download_records/{uuid}', 'AdminController@download_records');
 });
 
 Route::get('contestants', 'WebsiteController@contestants');

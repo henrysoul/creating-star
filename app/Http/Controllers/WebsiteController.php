@@ -7,6 +7,8 @@ use App\Models\Child;
 use App\Models\Contest;
 use Illuminate\Support\Str;
 use Illuminate\validation\Rule;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\CreatingStarConceptsRegistrationNotification;
 
 class WebsiteController extends Controller
 {
@@ -45,8 +47,18 @@ class WebsiteController extends Controller
         $reg_number = 1;
 
 
+
+
         if ($check) {
             $reg_number =  $check->reg_number + 1;
+        }
+
+        if (strlen($reg_number) == 1) {
+            $reg_copy = '00' . strval($reg_number);
+        } elseif (strlen($reg_number) == 2) {
+            $reg_copy = '0' . strval($reg_number);
+        } else {
+            $reg_copy = strval($reg_number);
         }
 
 
@@ -59,6 +71,7 @@ class WebsiteController extends Controller
         Child::create([
             'uuid' => Str::uuid(),
             'reg_number' => $reg_number,
+            'reg_number_copy' => $reg_copy,
             'contest_id' => $contest->id,
             'age' => $request->age,
             'gender' => $request->gender,
@@ -71,7 +84,8 @@ class WebsiteController extends Controller
             'less_than_a_year' => $request->less_than_a_year
         ]);
 
-        // send mail prefer to queue the mail
+        Notification::route('mail', $request->email)
+            ->notify(new CreatingStarConceptsRegistrationNotification($reg_copy));
 
         return back()->with('success', 'Registration successful. You will receive a mail of your reg number');
     }
@@ -115,6 +129,4 @@ class WebsiteController extends Controller
         $contest = Contest::latest('id')->where('opened', 1)->first();
         return view('website.contestants', compact('contest'));
     }
-
-    
 }

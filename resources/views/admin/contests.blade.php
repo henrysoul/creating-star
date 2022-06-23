@@ -74,8 +74,10 @@
                                         </button>
                                         <div class="dropdown-menu dropup" style="">
                                             <a class="dropdown-item" href="{{url('edit_contest',[$contest->uuid])}}">Edit contest</a>
+                                            <a class="dropdown-item" onClick="return confirm('Are you sure you want to end stage {{$contest->active_stage}}?. You cannot undo this action')" href="{{url('close_current_stage',[$contest->uuid])}}">Close current stage</a>
                                             <a class="dropdown-item" href="{{url('contestants',[$contest->uuid])}}">Contestants</a>
                                             <a class="dropdown-item" href="{{url('create_contestant',[$contest->uuid])}}">Create Contestant</a>
+                                            <a class="dropdown-item" href="{{url('download_records',[$contest->uuid])}}">Download Contestant</a>
                                         </div>
 
                                     </div>

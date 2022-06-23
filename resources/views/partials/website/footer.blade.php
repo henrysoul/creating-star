@@ -80,7 +80,9 @@
     </div>
 </div>
 
-<div class="go-top go-top-3"><i class="fas fa-chevron-up"></i></div>
+{{-- <div class="go-top go-top-3"><i class="fas fa-chevron-up"></i></div> --}}
+<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+<div class="elfsight-app-ee4d75cb-0deb-4c00-b468-3e745b447867"></div>
 
 <script src="{{asset('assets/website/assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('assets/website/assets/js/jquery-ui.min.js')}}"></script>
@@ -89,7 +91,7 @@
 <script src="{{asset('assets/website/assets/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('assets/website/assets/js/magnific-popup.min.js')}}"></script>
 <script src="{{asset('assets/website/assets/js/TweenMax.js')}}"></script>
-<script src="{{asset('assets/website/assets/js/nice-select.min.js')}}"></script>
+{{-- <script src="{{asset('assets/website/assets/js/nice-select.min.js')}}"></script> --}}
 <script src="{{asset('assets/website/assets/js/form-validator.min.js')}}"></script>
 <script src="{{asset('assets/website/assets/js/contact-form-script.js')}}"></script>
 <script src="{{asset('assets/website/assets/js/ajaxchimp.min.js')}}"></script>
@@ -98,3 +100,5 @@
 <script src="{{asset('assets/website/assets/js/barfiller.js')}}"></script>
 <script src="{{asset('assets/website/assets/js/odometer.min.js')}}"></script>
 <script src="{{asset('assets/website/assets/js/custom.js')}}"></script>
+
+@yield('scripts')
