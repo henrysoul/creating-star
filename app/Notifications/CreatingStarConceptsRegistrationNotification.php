@@ -42,7 +42,7 @@ class CreatingStarConceptsRegistrationNotification extends Notification
     {
         return (new MailMessage)
             ->line('Your registration on Creating Star Concept was successful')
-            ->line('Your reg no is ' . $this->reg_code)
+            ->line('Your contest no is ' . $this->reg_code)
             // ->action('Notification Action', url('/'))
             ->line('Thank you for using our application!');
     }

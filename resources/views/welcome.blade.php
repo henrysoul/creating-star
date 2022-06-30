@@ -9,10 +9,10 @@
                     <h1>We're a Child Centred Organisation </h1>
                     <div class="banner-buttons">
                         <ul>
-                            <li><a class="default-button" href="contact.html">Contact Now <i
+                            <li><a class="default-button" href="{{url('register_contestant')}}">Register contestant <i
                                         class="fas fa-arrow-right"></i></a></li>
-                            <li><a class="default-button banner-button" href="services.html">Explore More <i
-                                        class="fas fa-arrow-right"></i></a></li>
+                            {{-- <li><a class="default-button banner-button" href="services.html">Explore More <i
+                                        class="fas fa-arrow-right"></i></a></li> --}}
                         </ul>
                     </div>
                 </div>
@@ -27,10 +27,9 @@
                         commodo viverra maecenas accumsan facilisis.</p>
                     <div class="banner-buttons">
                         <ul>
-                            <li><a class="default-button" href="contact.html">Contact Now <i
+                            <li><a class="default-button" href="{{url('register_contestant')}}">Register contestant <i
                                         class="fas fa-arrow-right"></i></a></li>
-                            <li><a class="default-button banner-button" href="services.html">Explore More <i
-                                        class="fas fa-arrow-right"></i></a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -45,10 +44,10 @@
                         commodo viverra maecenas accumsan facilisis.</p>
                     <div class="banner-buttons">
                         <ul>
-                            <li><a class="default-button" href="contact.html">Contact Now <i
+                            <li><a class="default-button" href="{{url('register_contestant')}}">Register contestant <i
                                         class="fas fa-arrow-right"></i></a></li>
-                            <li><a class="default-button banner-button" href="services.html">Explore More <i
-                                        class="fas fa-arrow-right"></i></a></li>
+                            {{-- <li><a class="default-button banner-button" href="services.html">Explore More <i
+                                        class="fas fa-arrow-right"></i></a></li> --}}
                         </ul>
                     </div>
                 </div>
@@ -680,6 +679,37 @@
         </div>
     </div>
 </section> --}}
+{{-- @if($countdown?->show===1) --}}
+<div class="container d-none" id="countdiv">
+    <div class="coming">
+        <h3>Next contest begins in</h3>
+        <div class="countdown-wrapper">
+            <div class="row justify-content-center">
+                <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                    <div class="getting-start" id="getting-started-d">
+                        <div><span id="days">00</span> <span>Days </span> </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                    <div class="getting-start" id="getting-started-h">
+                        <div><span id="hrs">00</span> <span>Hours </span> </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                    <div class="getting-start" id="getting-started-m">
+                        <div><span id="mins">00</span> <span>minutes </span> </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                    <div class="getting-start" id="getting-started-s">
+                        <div><span id="secs">00</span> <span>seconds </span> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- @endif --}}
 
 
 <section class="blog ptb-100" id="articles">
@@ -694,7 +724,7 @@
                     <div class="blog-card">
                         <div class="blog-img-area">
                             <a href="{{url('child_right')}}"><img
-                                    src="{{asset('assets/website/assets/images/article/right.JPEG')}}"
+                                    src="{{asset('assets/website/assets/images/article/right.jpeg')}}"
                                     style="height: 356px !important;width:356px !important" alt="image"></a>
 
                         </div>
@@ -714,7 +744,7 @@
                     <div class="blog-card">
                         <div class="blog-img-area">
                             <a href="{{url('importance_of_child_right')}}"><img
-                                    src="{{asset('assets/website/assets/images/article/importance.JPEG')}}"
+                                    src="{{asset('assets/website/assets/images/article/importance.jpeg')}}"
                                     style="height: 356px !important;width:356px !important" alt="image"></a>
 
                         </div>
@@ -734,7 +764,7 @@
                     <div class="blog-card">
                         <div class="blog-img-area">
                             <a href="{{url('body_part')}}"><img
-                                    src="{{asset('assets/website/assets/images/article/part.JPEG')}}"
+                                    src="{{asset('assets/website/assets/images/article/part.jpeg')}}"
                                     style="height: 356px !important;width:356px !important" alt="image"></a>
 
                         </div>
@@ -757,7 +787,7 @@
                     <div class="blog-card">
                         <div class="blog-img-area">
                             <a href="{{url('child_trafficking')}}"><img
-                                    src="{{asset('assets/website/assets/images/article/types.JPEG')}}"
+                                    src="{{asset('assets/website/assets/images/article/types.jpeg')}}"
                                     style="height: 356px !important;width:356px !important" alt="image"></a>
 
                         </div>
@@ -777,7 +807,7 @@
                     <div class="blog-card">
                         <div class="blog-img-area">
                             <a href="{{url('effect_of_bullying')}}"><img
-                                    src="{{asset('assets/website/assets/images/article/mental.JPEG')}}"
+                                    src="{{asset('assets/website/assets/images/article/mental.jpeg')}}"
                                     style="height: 356px !important;width:356px !important" alt="image"></a>
 
                         </div>
@@ -872,4 +902,35 @@
     </div>
 </section> --}}
 
+@endsection
+@section('scripts')
+<script type="text/javascript">
+    var countDownDate = new Date("{{$countdown?->date}}").getTime();
+    $check= "{{$countdown?->show}}";
+    console.log(document.getElementById('days'))
+    if($check==1){
+        $('#countdiv').removeClass('d-none');
+        setInterval(function() {
+        var now = new Date().getTime();
+        var timeleft = countDownDate - now;
+            
+        var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+        // console.log(days,hours,minutes,seconds);
+
+        // console.log(document.getElementById('days'))
+        // // .innerHTML=days;
+        $('#days').html(days);
+        $('#hrs').html(hours);
+        $('#mins').html(minutes);
+        $('#secs').html(seconds);
+    
+    }, 1000);
+    }
+     
+
+    // myfunc();
+</script>
 @endsection

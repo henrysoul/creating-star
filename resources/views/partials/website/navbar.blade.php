@@ -23,7 +23,7 @@
                                 <a href="{{url('/')}}" class="nav-link  active">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#about" class="nav-link ">About us</a>
+                                <a href="{{url('/')}}/#about" class="nav-link ">About us</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#articles" class="nav-link dropdown-toggle">Articles</a>
@@ -35,10 +35,13 @@
                                     <li class="nav-item"><a href="{{url('effect_of_bullying')}}" class="nav-link">Teach your Child Body Part Early</a></li>
                                     </ul>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="#services" class="nav-link ">Services</a>
+                            </li> --}}
+                            <li class="nav-item"><a href="{{url('/')}}#contact" class="nav-link">Contact Us</a></li>
+                            <li class="nav-item">
+                                <a href="{{url('terms_conditions')}}" class="nav-link ">T&C</a>
                             </li>
-                            <li class="nav-item"><a href="#contact" class="nav-link">Contact Us</a></li>
                             <li class="nav-item">
                                 <a href="contestants" class="nav-link ">Contestants</a>
                             </li>

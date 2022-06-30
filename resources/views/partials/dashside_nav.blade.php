@@ -21,6 +21,9 @@
                         </li>
                     </ul>
                 </li>
+                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{ url('count_down') }}"
+                    aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
+                        class="hide-menu">Countdown</span></a></li>
 
 
                 <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{ url('bye') }}"

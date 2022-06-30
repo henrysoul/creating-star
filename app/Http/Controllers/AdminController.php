@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contest;
+use App\Models\Payment;
 use Illuminate\Support\Str;
 use App\Models\Child;
+use App\Models\Countdown;
 use Illuminate\validation\Rule;
 use App\Exports\ChildrenExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -214,7 +216,69 @@ class AdminController extends Controller
         return back()->with("success", 'Stage' . $current_stage . 'closed successfully');
     }
 
-    public function download_records($uuid){
+    public function download_records($uuid)
+    {
         return Excel::download(new ChildrenExport($uuid), 'contestants.xlsx');
+    }
+
+    public function payment_success(Request $request)
+    {
+        Payment::create([
+            'contestant_uuid' => $request->uuid,
+            'amount' => $request->amount,
+            'voter_phone' => $request->phone,
+            'api_response' => json_encode($request->response)
+        ]);
+
+        $amount = $request->amount;
+        $votes = 0;
+        if ($amount == 1000) {
+            $votes = 20;
+        } elseif ($amount == 2500) {
+            $votes = 50;
+        } elseif ($amount == 5000) {
+            $votes = 100;
+        } elseif ($amount == 10000) {
+            $votes = 200;
+        } elseif ($amount == 25000) {
+            $votes = 500;
+        } elseif ($amount == 50000) {
+            $votes = 1000;
+        } elseif ($amount == 100000) {
+            $votes = 2000;
+        }
+
+        $stage = Contest::where(['opened' => 1])->first()->active_stage;
+        $child = Child::where('uuid', $request->uuid)->first();
+
+        if ($stage == 1) {
+            $child->update(['stage1_votes' => $child->stage1_votes + $votes]);
+        } elseif ($stage == 2) {
+            $child->update(['stage2_votes' => $child->stage2_votes + $votes]);
+        } elseif ($stage == 3) {
+            $child->update(['stage3_votes' => $child->stage3_votes + $votes]);
+        }
+
+        return response()->json(['status' => true]);
+    }
+
+    public function count_down()
+    {
+        $countdown = Countdown::first();
+        // dd((date_format(date_create($countdown->date),"Y-m-d")));
+        return view('admin.count_down', compact('countdown'));
+    }
+
+    public function save_down(Request $request)
+    {
+        $countdown = Countdown::first();
+        if ($countdown) {
+            $countdown->date = $request->date;
+            $countdown->show = $request->show ? 1 : 0;
+            $countdown->save();
+        } else {
+            Countdown::create(['date' => $request->date, 'show' => $request->show ? 1 : 0]);
+        }
+        return back()->with("success", "Countdown updated successfully");
     }
 }

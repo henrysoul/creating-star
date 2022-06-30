@@ -19,7 +19,7 @@
     <div class="row justify-content-center">
         @foreach ($contest->contestants??[] as $contestant )
         @if( $contest->active_stage == 2 && $contestant->passed_stage1 ==1 || $contest->active_stage == 3 &&
-        $contestant->passed_stage2 ==1)
+        $contestant->passed_stage2 ==1 || $contest->active_stage == 1)
         <div class="col-lg-4 col-md-6 col-sm-12 col-12">
             <div class="blog-card">
                 <div class="blog-img-area">
@@ -28,7 +28,6 @@
                     <div class="blog-img-date">
                         <span>
                             @php
-
                             if($contest->active_stage ==1){
                             $vote = $contestant->stage1_votes;
                             }
@@ -74,16 +73,19 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Vote for {{$contestant->name}} </h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Vote for {{$contestant->name}} Reg no:
+                            {{$contestant->reg_number_copy}} </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form id="form{{$contestant->uuid}}">
                         <div class="modal-body">
-
-                            <p class="modal-title text-dark">Reg no : {{$contestant->reg_number_copy}}</p>
-                            {{-- <p class="text-dark">₦50 per vote</p> --}}
+                            <div class="form-group">
+                                <label class="text-dark">Phone number</label>
+                                <input class="form-control inputField" type="number" required
+                                    style="border:1px solid black !important" placeholder="Enter your phone number" />
+                            </div><br>
                             <label class="text-dark">No of votes</label>
-                            <select class=" amountSelect" id="sel{{$contestant->uuid}}"
+                            <select class="form-control amountSelect" id="sel{{$contestant->uuid}}"
                                 style="border:1px solid black !important" name="no_of_vote" required>
                                 <option value="">--Select no of votes--</option>
                                 <option value="500">10 votes - ₦500 </option>
@@ -118,6 +120,7 @@
     let uuid;
     let amount;
     let email;
+    let phone;
    for(let btn of Array.from(voteBtns)){
        btn.addEventListener('click',()=>{
            uuid = btn.getAttribute('data-id');
@@ -132,25 +135,47 @@
        });
    }
 
+   let inputField =  document.getElementsByClassName('inputField');
+   for(let sel of Array.from(inputField) ){
+       sel.addEventListener('change',(e)=>{
+        phone = e.target.value;
+       });
+   }
+
+
    let pays = document.getElementsByClassName('pay');
    for(let pay of Array.from(pays)){
         pay.addEventListener("click",(e)=>{
             e.preventDefault();
             const form = document.getElementById('form'+uuid);
             if(form.checkValidity()){
-                console.log(amount);
                 let handler = PaystackPop.setup({
-                    key: 'pk_test_dcd94b3891322e0866ac2fa90eb9eda16ea7b765', // Replace with your public key
-                    email: email,
-                    amount: amount,
-                    // ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+                    key: 'pk_test_dcd94b3891322e0866ac2fa90eb9eda16ea7b765', 
+                    email: `${phone}@email.com`,
+                    amount: amount * 100,
                     label: uuid,
                     onClose: function(){
-                    alert('Window closed.');
+                    alert('Payment calcelled.');
                     },
                     callback: function(response){
-                    let message = 'Payment complete! Reference: ' + response.reference;
-                    alert(message);
+                        $(`.voteModal${uuid}`).toggle();
+                        if(response.status=="success"){
+                            $.ajax({
+                                url: "<?php echo url('payment_success') ?>",
+                                method: 'post',
+                                data:{
+                                    amount:amount ,
+                                    uuid:uuid,
+                                    phone:phone,
+                                    response:JSON.stringify(response),
+                                    _token:'{{csrf_token()}}'
+                                },
+                                success: function (response) {
+                                    window.location.reload();
+                                }
+                            });
+                        }
+                        
                     }
                 });
                 handler.openIframe();

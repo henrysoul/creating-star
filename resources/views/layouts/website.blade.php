@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-<!-- Mirrored from templates.hibootstrap.com/gliter/default/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 23 Apr 2022 05:43:22 GMT -->
 
 <head>
     <meta charset="UTF-8">
@@ -26,6 +25,22 @@
     <title>Creating Star Concept</title>
     <link rel="icon" type="image/png" href="{{asset('assets/website/assets/images/fav-icon.png')}}')}}">
     @yield('head')
+    <style>
+        .float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,6 +49,10 @@
     @yield('content')
 
     @include('partials.website.footer')
+    <a href="https://api.whatsapp.com/send?phone=23481363599938&amp;text=HelloStarConcepts!" class="float"
+        target="_blank">
+        <i class="fab fa-whatsapp my-float"></i>
+    </a>
 </body>
 
 </html>

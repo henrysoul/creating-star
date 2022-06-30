@@ -1,6 +1,6 @@
 <section class="footer ptb-100 bg-071327">
     <div class="container">
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
                 <div class="footer-logo-area">
                     <a href="index.html"><img src="{{asset('assets/website/assets/images/white-logo.png')}}"
@@ -63,26 +63,22 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </section>
 
 
 <div class="copyright bg-071327">
     <div class="container">
-        <p>Copyright @<script data-cfasync="false"
-                src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js')}}"></script>
+        <p>Copyright @<script data-cfasync="false"></script>
             <script>
                 document.write(new Date().getFullYear())
-            </script>. <strong>Gliter</strong> All Rights Reserved By <a target="_blank"
-                href="https://hibootstrap.com/">HiBootstrap</a>
+            </script>Creating stars concept
         </p>
     </div>
 </div>
 
 {{-- <div class="go-top go-top-3"><i class="fas fa-chevron-up"></i></div> --}}
-<script src="https://apps.elfsight.com/p/platform.js" defer></script>
-<div class="elfsight-app-ee4d75cb-0deb-4c00-b468-3e745b447867"></div>
 
 <script src="{{asset('assets/website/assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('assets/website/assets/js/jquery-ui.min.js')}}"></script>

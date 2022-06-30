@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,14 +21,14 @@ Route::get('importance_of_child_right', 'WebsiteController@importance_of_child_r
 Route::get('child_trafficking', 'WebsiteController@child_trafficking');
 Route::get('effect_of_bullying', 'WebsiteController@effect_of_bullying');
 Route::get('terms_conditions', 'WebsiteController@terms_conditions');
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WebsiteController@welcome');
+
+
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth'])->name('dashboard');
-
+Route::post('payment_success', 'AdminController@payment_success');
 Route::middleware(['auth'])->group(function () {
     Route::get('contests', 'AdminController@contests');
     Route::get('create_contest', 'AdminController@create_contest');
@@ -42,6 +42,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('contestants/{uuid}', 'AdminController@contestants');
     Route::get('close_current_stage/{uuid}', 'AdminController@close_current_stage');
     Route::get('download_records/{uuid}', 'AdminController@download_records');
+    Route::get('count_down', 'AdminController@count_down');
+    Route::post('count_down', 'AdminController@save_down');
+    Route::get('bye', function(){
+        Auth::logout();
+    });
 });
 
 Route::get('contestants', 'WebsiteController@contestants');

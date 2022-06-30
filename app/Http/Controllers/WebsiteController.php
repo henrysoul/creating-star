@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Child;
 use App\Models\Contest;
+use App\Models\Countdown;
 use Illuminate\Support\Str;
 use Illuminate\validation\Rule;
 use Illuminate\Support\Facades\Notification;
@@ -15,16 +16,20 @@ class WebsiteController extends Controller
     public function register()
     {
         // check RegisteredUserController 
-
         $contest = Contest::latest('id')->first();
         $can_register = false;
         if ($contest?->can_register) {
             $can_register = true;
         }
 
+        $countdown=  Countdown::first();
         return view('website.register', compact('can_register'));
     }
 
+    public function welcome(){
+        $countdown=  Countdown::first();        
+        return view('welcome',compact('countdown'));
+    }
     public function do_register(Request $request)
     {
         $contest = Contest::latest('id')->first();
