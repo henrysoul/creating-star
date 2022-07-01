@@ -1,24 +1,24 @@
 @extends('layouts.website')
 @section('content')
-<div class="main-banner">
-    <div class="main-banner-slider-area owl-carousel slider-nav">
-        <div class="main-banner-single-slider">
-            <div class="container">
-                <div class="banner-text-area">
-                    <h6>Creating Stars Concept </h6>
-                    <h1>We're a Child Centred Organisation </h1>
-                    <div class="banner-buttons">
-                        <ul>
-                            <li><a class="default-button" href="{{url('register_contestant')}}">Register contestant <i
-                                        class="fas fa-arrow-right"></i></a></li>
-                            {{-- <li><a class="default-button banner-button" href="services.html">Explore More <i
+    <div class="main-banner">
+        <div class="main-banner-slider-area owl-carousel slider-nav">
+            <div class="main-banner-single-slider">
+                <div class="container">
+                    <div class="banner-text-area">
+                        <h6>Creating Stars Concept </h6>
+                        <h1>We're a Child Centred Organisation </h1>
+                        <div class="banner-buttons">
+                            <ul>
+                                <li><a class="default-button" href="{{ url('register_contestant') }}">Register contestant
+                                        <i class="fas fa-arrow-right"></i></a></li>
+                                {{-- <li><a class="default-button banner-button" href="services.html">Explore More <i
                                         class="fas fa-arrow-right"></i></a></li> --}}
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="main-banner-single-slider mbs-2">
+            {{-- <div class="main-banner-single-slider mbs-2">
             <div class="container">
                 <div class="banner-text-area">
                     <h6>We Are Digital Marketing Expert</h6>
@@ -46,18 +46,18 @@
                         <ul>
                             <li><a class="default-button" href="{{url('register_contestant')}}">Register contestant <i
                                         class="fas fa-arrow-right"></i></a></li>
-                            {{-- <li><a class="default-button banner-button" href="services.html">Explore More <i
-                                        class="fas fa-arrow-right"></i></a></li> --}}
+                            <li><a class="default-button banner-button" href="services.html">Explore More <i
+                                        class="fas fa-arrow-right"></i></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
+        </div> --}}
         </div>
     </div>
-</div>
 
 
-{{-- <section class="featurs ptb-100">
+    {{-- <section class="featurs ptb-100">
     <div class="container">
         <div class="default-section-title default-section-title-middle">
             <span>Our Features</span>
@@ -92,31 +92,31 @@
 </section> --}}
 
 
-<section class="about pb-100" id="about">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="about-img-area">
-                    <img class="main-img" src="{{asset('assets/website/assets/images/star.png')}}" alt="image">
-                    {{-- <img class="small-img" src="{{asset('assets/website/assets/images/star.png')}}" alt="image">
-                    --}}
-                    <div class="about-exp">
-                        <h4>2+</h4>
-                        <p>Years Of Experience</p>
+    <section class="about pb-100" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="about-img-area">
+                        <img class="main-img" src="{{ asset('assets/website/assets/images/star.png') }}"
+                            alt="image">
+                        {{-- <img class="small-img" src="{{asset('assets/website/assets/images/star.png')}}" alt="image"> --}}
+                        <div class="about-exp">
+                            <h4>2+</h4>
+                            <p>Years Of Experience</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="about-text-area pl-20">
-                    <div class="default-section-title ">
-                        <span>About us</span>
-                        {{-- <h3>Here Comes An Intro About The Company</h3> --}}
-                    </div>
-                    <p>Creating Stars Concept is a child-centred organisation established to improve the lives of less
-                        privileged children, prevent child sexual abuse, fight against child trafficking and
-                        molestation, prevent child bullying and to create awareness on the dangers and effects of child
-                        abuse, as well as protection and emergency care for abused victims.</p>
-                    {{-- <div class="progress-bar-area">
+                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="about-text-area pl-20">
+                        <div class="default-section-title ">
+                            <span>About us</span>
+                            {{-- <h3>Here Comes An Intro About The Company</h3> --}}
+                        </div>
+                        <p>Creating Stars Concept is a child-centred organisation established to improve the lives of less
+                            privileged children, prevent child sexual abuse, fight against child trafficking and
+                            molestation, prevent child bullying and to create awareness on the dangers and effects of child
+                            abuse, as well as protection and emergency care for abused victims.</p>
+                        {{-- <div class="progress-bar-area">
                         <div id="bar1" class="barfiller">
                             <span class="label">Sales & Trading</span>
                             <span class="tip"></span>
@@ -145,14 +145,14 @@
                             <p>Founder Manager</p>
                         </div>
                     </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
-{{-- <section class="service ptb-100 bg-f8f8f8">
+    {{-- <section class="service ptb-100 bg-f8f8f8">
     <div class="container">
         <div class="default-section-title default-section-title-middle">
             <span>Our Services</span>
@@ -210,7 +210,7 @@
 </section> --}}
 
 
-{{-- <section class="why-only-we ptb-100">
+    {{-- <section class="why-only-we ptb-100">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-xl-6 col-lg-12 col-sm-12 col-md-12 col-12">
@@ -254,8 +254,7 @@
     </div>
 </section> --}}
 
-{{--
-<section class="project ptb-100 bg-f8f8f8">
+    {{-- <section class="project ptb-100 bg-f8f8f8">
     <div class="container">
         <div class="default-section-title default-section-title-middle">
             <span>Our Project</span>
@@ -317,7 +316,7 @@
 </section> --}}
 
 
-{{-- <section class="fun-facts fun-facts-1 bg-f8f8f8">
+    {{-- <section class="fun-facts fun-facts-1 bg-f8f8f8">
     <div class="container">
         <div class="fun-facts-content">
             <div class="row">
@@ -367,7 +366,7 @@
 </section> --}}
 
 
-{{-- <section class="team ptb-100">
+    {{-- <section class="team ptb-100">
     <div class="container">
         <div class="default-section-title default-section-title-middle">
             <span>Our Team</span>
@@ -457,7 +456,7 @@
 </section> --}}
 
 
-{{-- <section class="why-we why-we-1 pt-100 bg-f8f8f8">
+    {{-- <section class="why-we why-we-1 pt-100 bg-f8f8f8">
     <div class="shape">
         <div class="shape-img">
             <img src="{{asset('assets/website/assets/images/shape/shape1.png')}}" alt="image">
@@ -505,7 +504,7 @@
 </section> --}}
 
 
-{{-- <section class="testimonials ptb-100">
+    {{-- <section class="testimonials ptb-100">
     <div class="container">
         <div class="default-section-title default-section-title-middle">
             <span>Testimonials</span>
@@ -634,7 +633,7 @@
 </section> --}}
 
 
-{{-- <section class="booking ptb-100 bg-f8f8f8">
+    {{-- <section class="booking ptb-100 bg-f8f8f8">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6">
@@ -679,204 +678,208 @@
         </div>
     </div>
 </section> --}}
-{{-- @if($countdown?->show===1) --}}
-<div class="container d-none" id="countdiv">
-    <div class="coming">
-        <h3>Next contest begins in</h3>
-        <div class="countdown-wrapper">
-            <div class="row justify-content-center">
-                <div class="col-lg-2 col-md-3 col-sm-6 col-6">
-                    <div class="getting-start" id="getting-started-d">
-                        <div><span id="days">00</span> <span>Days </span> </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 col-6">
-                    <div class="getting-start" id="getting-started-h">
-                        <div><span id="hrs">00</span> <span>Hours </span> </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 col-6">
-                    <div class="getting-start" id="getting-started-m">
-                        <div><span id="mins">00</span> <span>minutes </span> </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 col-6">
-                    <div class="getting-start" id="getting-started-s">
-                        <div><span id="secs">00</span> <span>seconds </span> </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-{{-- @endif --}}
-
-
-<section class="blog ptb-100" id="articles">
-    <div class="container">
-        <div class="default-section-title default-section-title-middle">
-            <span>Recent Blog Post</span>
-            <h3>Our Articles</h3>
-        </div>
-        <div class="section-content">
-            <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                    <div class="blog-card">
-                        <div class="blog-img-area">
-                            <a href="{{url('child_right')}}"><img
-                                    src="{{asset('assets/website/assets/images/article/right.jpeg')}}"
-                                    style="height: 356px !important;width:356px !important" alt="image"></a>
-
-                        </div>
-                        <div class="blog-text-area">
-                            <div class="blog-date">
-                                <ul>
-                                    <li><i class="far fa-user-circle"></i> By <span>Admin</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h4><a href="{{url('child_right')}}">A Child’s Right
-                                </a></h4>
-                            <a class="default-button default-button-2" href="{{url('child_right')}}">Read More <i
-                                    class="fas fa-arrow-right"></i></a>
+    {{-- @if ($countdown?->show === 1) --}}
+    <div class="container d-none" id="countdiv">
+        <div class="coming">
+            <h3>{{ $countdown?->text }}</h3>
+            <div class="countdown-wrapper">
+                <div class="row justify-content-center">
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <div class="getting-start" id="getting-started-d">
+                            <div><span id="days">00</span> <span>Days </span> </div>
                         </div>
                     </div>
-                    <div class="blog-card">
-                        <div class="blog-img-area">
-                            <a href="{{url('importance_of_child_right')}}"><img
-                                    src="{{asset('assets/website/assets/images/article/importance.jpeg')}}"
-                                    style="height: 356px !important;width:356px !important" alt="image"></a>
-
-                        </div>
-                        <div class="blog-text-area">
-                            <div class="blog-date">
-                                <ul>
-                                    <li><i class="far fa-user-circle"></i> By <span>Admin</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h4><a href="{{url('importance_of_child_right')}}">Importance of Child Right
-                                </a></h4>
-                            <a class="default-button default-button-2" href="{{url('importance_of_child_right')}}">Read
-                                More <i class="fas fa-arrow-right"></i></a>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <div class="getting-start" id="getting-started-h">
+                            <div><span id="hrs">00</span> <span>Hours </span> </div>
                         </div>
                     </div>
-                    <div class="blog-card">
-                        <div class="blog-img-area">
-                            <a href="{{url('body_part')}}"><img
-                                    src="{{asset('assets/website/assets/images/article/part.jpeg')}}"
-                                    style="height: 356px !important;width:356px !important" alt="image"></a>
-
-                        </div>
-                        <div class="blog-text-area">
-                            <div class="blog-date">
-                                <ul>
-                                    <li><i class="far fa-user-circle"></i> By <span>Admin</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h4><a href="{{url('body_part')}}">Teach your Child Body Part Early
-                                </a></h4>
-                            <a class="default-button default-button-2" href="{{url('body_part')}}">Read More <i
-                                    class="fas fa-arrow-right"></i></a>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <div class="getting-start" id="getting-started-m">
+                            <div><span id="mins">00</span> <span>minutes </span> </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                    <div class="blog-card">
-                        <div class="blog-img-area">
-                            <a href="{{url('child_trafficking')}}"><img
-                                    src="{{asset('assets/website/assets/images/article/types.jpeg')}}"
-                                    style="height: 356px !important;width:356px !important" alt="image"></a>
-
-                        </div>
-                        <div class="blog-text-area">
-                            <div class="blog-date">
-                                <ul>
-                                    <li><i class="far fa-user-circle"></i> By <span>Admin</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h4><a href="{{url('child_trafficking')}}">Child Trafficking
-                                </a></h4>
-                            <a class="default-button default-button-2" href="{{url('child_trafficking')}}">Read More <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog-card">
-                        <div class="blog-img-area">
-                            <a href="{{url('effect_of_bullying')}}"><img
-                                    src="{{asset('assets/website/assets/images/article/mental.jpeg')}}"
-                                    style="height: 356px !important;width:356px !important" alt="image"></a>
-
-                        </div>
-                        <div class="blog-text-area">
-                            <div class="blog-date">
-                                <ul>
-                                    <li><i class="far fa-user-circle"></i> By <span>Admin</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h4><a href="{{url('effect_of_bullying')}}">Effects OF Bullying on Mental Health
-
-                                </a></h4>
-                            <a class="default-button default-button-2" href="{{url('effect_of_bullying')}}">Read More <i
-                                    class="fas fa-arrow-right"></i></a>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <div class="getting-start" id="getting-started-s">
+                            <div><span id="secs">00</span> <span>seconds </span> </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+    {{-- @endif --}}
 
-<section class="contact ptb-100" id="contact">
-    <div class="container ">
-        <div class="row ">
 
-            <div class="col-lg-12 ">
-                <div class="contact-card-area m-auto">
-                    <div class="default-section-title">
-                        <h3 class="text-center">Contact us</h3>
-                        <hr class="bg-light">
-                        <p>Our contact</p>
-                    </div>
-                    <div class="contact-card">
-                        <h4><i class="fas fa-map-marker-alt"></i> Address: </h4>
-                        <p><span>BSS217A Banex Plaza, Aminu kano Crescent Wuse II, Abuja</span></p>
-                    </div>
-                    <div class="contact-card">
-                        <h4><i class="fas fa-envelope"></i> Email: </h4>
-                        <p><a href="mailto:info.creatingstarsconcept@gmail.com"><span class="__cf_email__"
-                                    data-cfemail="f39b969f9f9cb3949f9a879681dd909c9e">info.creatingstarsconcept@gmail.com</span></a>
-                        </p>
-                    </div>
-                    <div class="contact-card">
-                        <h4><i class="fas fa-phone"></i> Call: </h4>
-                        <p><a href="tel:09019603025">09019603025</a></p>
-                    </div>
-                    <div class="contact-card">
-                        <h4>Socials:</h4>
-                        <ul>
-                            <div class="row"><a href="https://www.facebook.com/" target="_blank"><i
-                                        class="fab fa-facebook-f text-light "></i><span class="ps-2">Creating Stars
-                                        Concept</span></a></div>
-                            <div class="row"><a href="https://www.instagram.com/creatingstarsconcept" target="_blank"><i
-                                        class="fab fa-instagram text-light "></i><span
-                                        class="ps-2">creatingstarsconcept</span></a>
+    <section class="blog ptb-100" id="articles">
+        <div class="container">
+            <div class="default-section-title default-section-title-middle">
+                <span>Recent Blog Post</span>
+                <h3>Our Articles</h3>
+            </div>
+            <div class="section-content">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                        <div class="blog-card">
+                            <div class="blog-img-area">
+                                <a href="{{ url('child_right') }}"><img
+                                        src="{{ asset('assets/website/assets/images/article/right.jpeg') }}"
+                                        style="height: 356px !important;width:356px !important" alt="image"></a>
+
                             </div>
-                        </ul>
+                            <div class="blog-text-area">
+                                <div class="blog-date">
+                                    <ul>
+                                        <li><i class="far fa-user-circle"></i> By <span>Admin</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <h4><a href="{{ url('child_right') }}">A Child’s Right
+                                    </a></h4>
+                                <a class="default-button default-button-2" href="{{ url('child_right') }}">Read More <i
+                                        class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="blog-card">
+                            <div class="blog-img-area">
+                                <a href="{{ url('importance_of_child_right') }}"><img
+                                        src="{{ asset('assets/website/assets/images/article/importance.jpeg') }}"
+                                        style="height: 356px !important;width:356px !important" alt="image"></a>
+
+                            </div>
+                            <div class="blog-text-area">
+                                <div class="blog-date">
+                                    <ul>
+                                        <li><i class="far fa-user-circle"></i> By <span>Admin</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <h4><a href="{{ url('importance_of_child_right') }}">Importance of Child Right
+                                    </a></h4>
+                                <a class="default-button default-button-2"
+                                    href="{{ url('importance_of_child_right') }}">Read
+                                    More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="blog-card">
+                            <div class="blog-img-area">
+                                <a href="{{ url('body_part') }}"><img
+                                        src="{{ asset('assets/website/assets/images/article/part.jpeg') }}"
+                                        style="height: 356px !important;width:356px !important" alt="image"></a>
+
+                            </div>
+                            <div class="blog-text-area">
+                                <div class="blog-date">
+                                    <ul>
+                                        <li><i class="far fa-user-circle"></i> By <span>Admin</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <h4><a href="{{ url('body_part') }}">Teach your Child Body Part Early
+                                    </a></h4>
+                                <a class="default-button default-button-2" href="{{ url('body_part') }}">Read More <i
+                                        class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                        <div class="blog-card">
+                            <div class="blog-img-area">
+                                <a href="{{ url('child_trafficking') }}"><img
+                                        src="{{ asset('assets/website/assets/images/article/types.jpeg') }}"
+                                        style="height: 356px !important;width:356px !important" alt="image"></a>
+
+                            </div>
+                            <div class="blog-text-area">
+                                <div class="blog-date">
+                                    <ul>
+                                        <li><i class="far fa-user-circle"></i> By <span>Admin</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <h4><a href="{{ url('child_trafficking') }}">Child Trafficking
+                                    </a></h4>
+                                <a class="default-button default-button-2" href="{{ url('child_trafficking') }}">Read
+                                    More
+                                    <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="blog-card">
+                            <div class="blog-img-area">
+                                <a href="{{ url('effect_of_bullying') }}"><img
+                                        src="{{ asset('assets/website/assets/images/article/mental.jpeg') }}"
+                                        style="height: 356px !important;width:356px !important" alt="image"></a>
+
+                            </div>
+                            <div class="blog-text-area">
+                                <div class="blog-date">
+                                    <ul>
+                                        <li><i class="far fa-user-circle"></i> By <span>Admin</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <h4><a href="{{ url('effect_of_bullying') }}">Effects OF Bullying on Mental Health
+
+                                    </a></h4>
+                                <a class="default-button default-button-2" href="{{ url('effect_of_bullying') }}">Read
+                                    More
+                                    <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <section class="contact ptb-100" id="contact">
+        <div class="container ">
+            <div class="row ">
+
+                <div class="col-lg-12 ">
+                    <div class="contact-card-area m-auto">
+                        <div class="default-section-title">
+                            <h3 class="text-center">Contact us</h3>
+                            <hr class="bg-light">
+                            <p>Our contact</p>
+                        </div>
+                        <div class="contact-card">
+                            <h4><i class="fas fa-map-marker-alt"></i> Address: </h4>
+                            <p><span>BSS217A Banex Plaza, Aminu kano Crescent Wuse II, Abuja</span></p>
+                        </div>
+                        <div class="contact-card">
+                            <h4><i class="fas fa-envelope"></i> Email: </h4>
+                            <p><a href="mailto:info.creatingstarsconcept@gmail.com"><span class="__cf_email__"
+                                        data-cfemail="f39b969f9f9cb3949f9a879681dd909c9e">info.creatingstarsconcept@gmail.com</span></a>
+                            </p>
+                        </div>
+                        <div class="contact-card">
+                            <h4><i class="fas fa-phone"></i> Call: </h4>
+                            <p><a href="tel:09019603025">09019603025</a></p>
+                        </div>
+                        <div class="contact-card">
+                            <h4>Socials:</h4>
+                            <ul>
+                                <div class="row"><a href="https://www.facebook.com/" target="_blank"><i
+                                            class="fab fa-facebook-f text-light "></i><span class="ps-2">Creating
+                                            Stars
+                                            Concept</span></a></div>
+                                <div class="row"><a href="https://www.instagram.com/creatingstarsconcept"
+                                        target="_blank"><i class="fab fa-instagram text-light "></i><span
+                                            class="ps-2">creatingstarsconcept</span></a>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
-{{-- <section class="partner">
+    {{-- <section class="partner">
     <div class="container">
         <div class="partner-slider-area owl-carousel">
             <div class="brand-logo">
@@ -901,36 +904,29 @@
         </div>
     </div>
 </section> --}}
-
 @endsection
 @section('scripts')
-<script type="text/javascript">
-    var countDownDate = new Date("{{$countdown?->date}}").getTime();
-    $check= "{{$countdown?->show}}";
-    console.log(document.getElementById('days'))
-    if($check==1){
-        $('#countdiv').removeClass('d-none');
-        setInterval(function() {
-        var now = new Date().getTime();
-        var timeleft = countDownDate - now;
-            
-        var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
-        // console.log(days,hours,minutes,seconds);
+    <script>
+        $(document).ready(function() {
+            var countDownDate = new Date("{{ $countdown?->date }}").getTime();
+            $check = "{{ $countdown?->show }}";
+            if ($check == 1) {
+                $('#countdiv').removeClass('d-none');
+                let pas = (document.getElementById('days'));
+                setInterval(function() {
+                    var now = new Date().getTime();
+                    var timeleft = countDownDate - now;
 
-        // console.log(document.getElementById('days'))
-        // // .innerHTML=days;
-        $('#days').html(days);
-        $('#hrs').html(hours);
-        $('#mins').html(minutes);
-        $('#secs').html(seconds);
-    
-    }, 1000);
-    }
-     
-
-    // myfunc();
-</script>
+                    var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+                    var hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+                    $('#days').html(days);
+                    $('#hrs').html(hours);
+                    $('#mins').html(minutes);
+                    $('#secs').html(seconds);
+                }, 1000);
+            }
+        });
+    </script>
 @endsection

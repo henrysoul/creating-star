@@ -20,7 +20,7 @@
                                 </th>
                                 <th class="border-0 font-14 font-weight-medium text-muted">Stage 2 minmum vote
                                 </th>
-                                <th class="border-0 font-14 font-weight-medium text-muted">Stage 1 start date
+                                {{-- <th class="border-0 font-14 font-weight-medium text-muted">Stage 1 start date
                                 </th>
                                 <th class="border-0 font-14 font-weight-medium text-muted">Stage 1 end date
                                 </th>
@@ -37,7 +37,7 @@
                                 <th class="border-0 font-14 font-weight-medium text-muted">Registration end date
                                 </th>
                                 <th class="border-0 font-14 font-weight-medium text-muted">Cost per vote
-                                </th>
+                                </th> --}}
                                 <th class="border-0 font-14 font-weight-medium text-muted">Active stage
                                 </th>
                                 </th>
@@ -54,7 +54,7 @@
                                 <td>{{$contest->name}}</td>
                                 <td>{{$contest->stage1_minimum_vote}}</td>
                                 <td>{{$contest->stage2_minimum_vote}}</td>
-                                <td>{{$contest->stage1_start_date}}</td>
+                                {{-- <td>{{$contest->stage1_start_date}}</td>
                                 <td>{{$contest->stage1_end_date}}</td>
                                 <td>{{$contest->stage2_start_date}}</td>
                                 <td>{{$contest->stage2_end_date}}</td>
@@ -62,7 +62,7 @@
                                 <td>{{$contest->stage3_end_date}}</td>
                                 <td>{{$contest->registration_start_date}}</td>
                                 <td>{{$contest->registration_end_date}}</td>
-                                <td>{{$contest->cost_per_vote}}</td>
+                                <td>{{$contest->cost_per_vote}}</td> --}}
                                 <td>{{$contest->active_stage}}</td>
                                 <td>{{$contest->opened === 1 ? 'Opened':'Closed'}}</td>
                                 <td>{{$contest->can_register === 1 ? 'Can register':'Cannot register'}}</td>

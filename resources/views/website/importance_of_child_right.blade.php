@@ -21,7 +21,7 @@
             <div class="col-lg-8">
                 <div class="blog-details-text-area">
                     <img class="details-main-img"
-                        src="{{asset('assets/website/assets/images/article/importance.JPEG')}}" style="height:368px"
+                        src="{{asset('assets/website/assets/images/article/importance.jpeg')}}" style="height:368px"
                         alt="image">
                     <div class="bdt-text">
 

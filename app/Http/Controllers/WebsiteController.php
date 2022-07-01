@@ -22,13 +22,14 @@ class WebsiteController extends Controller
             $can_register = true;
         }
 
-        $countdown=  Countdown::first();
+        $countdown =  Countdown::first();
         return view('website.register', compact('can_register'));
     }
 
-    public function welcome(){
-        $countdown=  Countdown::first();        
-        return view('welcome',compact('countdown'));
+    public function welcome()
+    {
+        $countdown =  Countdown::first();
+        return view('welcome', compact('countdown'));
     }
     public function do_register(Request $request)
     {
@@ -36,7 +37,6 @@ class WebsiteController extends Controller
         $this->validate($request, [
             'child_name' => ['required', 'min:6'],
             'age' => ['required'],
-            'less_than_a_year' => ['required'],
             'gender' => ['required'],
             'photo' => ['required', 'mimes:jpg,jpeg,png,jfif'],
             'parent_name' => ['required'],
@@ -132,6 +132,33 @@ class WebsiteController extends Controller
     public function contestants()
     {
         $contest = Contest::latest('id')->where('opened', 1)->first();
+        $contest = $contest?->with(['contestants' => function ($q) use ($contest) {
+            if ($contest->active_stage == 1) {
+                return $q->orderby('stage1_votes', 'DESC');
+            } elseif ($contest->active_stage == 2) {
+                return $q->orderby('stage2_votes', 'DESC');
+            } elseif ($contest->active_stage == 3) {
+                return $q->orderby('stage3_votes', 'DESC');
+            }
+        }])->first();
+
+
+        return view('website.contestants', compact('contest'));
+    }
+
+    public function vote()
+    {
+        return view('website.vote');
+    }
+
+    public function search_contestant(Request $request)
+    {
+        $contest = Contest::latest('id')->where('opened', 1)->first();
+        $contest = $contest?->with(['contestants' => function ($q) use ($request) {
+            return $q->where('reg_number_copy', $request->contestant_id);
+        }])->first();
+
+
         return view('website.contestants', compact('contest'));
     }
 }

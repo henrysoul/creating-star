@@ -26,7 +26,6 @@ class CreateChildrenTable extends Migration
             $table->string('age');
             $table->string('email');
             $table->string('phone');
-            $table->string('less_than_a_year');
             $table->integer('stage1_votes')->default(0);
             $table->integer('stage2_votes')->default(0);
             $table->integer('stage3_votes')->default(0);

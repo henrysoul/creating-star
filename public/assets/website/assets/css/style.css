@@ -542,6 +542,7 @@ a.meanmenu-reveal {
 .mean-container .mean-nav .navbar-nav {
     overflow-y: scroll;
     height: 100%;
+    margin-top: 50px;
 }
 
 .mean-container .mean-push {

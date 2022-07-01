@@ -21,6 +21,8 @@ Route::get('importance_of_child_right', 'WebsiteController@importance_of_child_r
 Route::get('child_trafficking', 'WebsiteController@child_trafficking');
 Route::get('effect_of_bullying', 'WebsiteController@effect_of_bullying');
 Route::get('terms_conditions', 'WebsiteController@terms_conditions');
+Route::post('search_contestant', 'WebsiteController@search_contestant');
+Route::get('vote','WebsiteController@vote');
 Route::get('/', 'WebsiteController@welcome');
 
 
@@ -39,12 +41,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('edit_contestant/{uuid}', 'AdminController@edit_contestant');
     Route::post('update_contestant', 'AdminController@update_contestant');
     Route::post('do_create_contestant', 'AdminController@do_create_contestant');
-    Route::get('contestants/{uuid}', 'AdminController@contestants');
+    Route::get('contestants/{uuid}', 'AdminController@contestants')->name('contestants');
+    Route::post('admin_search_contestant', 'AdminController@admin_search_contestant');
+    Route::post('add_vote', 'AdminController@add_vote');
     Route::get('close_current_stage/{uuid}', 'AdminController@close_current_stage');
     Route::get('download_records/{uuid}', 'AdminController@download_records');
     Route::get('count_down', 'AdminController@count_down');
     Route::post('count_down', 'AdminController@save_down');
-    Route::get('bye', function(){
+    Route::get('pix_download/{uuid}', 'AdminController@pix_download');
+    Route::get('bye', function () {
         Auth::logout();
     });
 });

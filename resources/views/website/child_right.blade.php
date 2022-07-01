@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="blog-details-text-area">
-                    <img class="details-main-img" src="{{asset('assets/website/assets/images/article/right.JPEG')}}" style="height:368px" alt="image">
+                    <img class="details-main-img" src="{{asset('assets/website/assets/images/article/right.jpeg')}}" style="height:368px" alt="image">
                     <div class="bdt-text">
 
                         <h3 class="details-page-title">A CHILD’S RIGHT</h3>

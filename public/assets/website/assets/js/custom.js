@@ -257,26 +257,26 @@
     });
 
     // countdown
-    $("#getting-started-d").countdown("2022/03/05", function (event) {
-        $(this).html(
-        event.strftime("<div><span>%D</span> <span>Days </span> </div> ")
-        );
-    });
-    $("#getting-started-h").countdown("2022/03/05", function (event) {
-        $(this).html(
-        event.strftime("<div><span>%H</span> <span>Hours </span> </div> ")
-        );
-    });
-    $("#getting-started-m").countdown("2022/03/05", function (event) {
-        $(this).html(
-        event.strftime("<div><span>%M</span> <span>minutes </span> </div> ")
-        );
-    });
-    $("#getting-started-s").countdown("2022/03/05", function (event) {
-        $(this).html(
-        event.strftime("<div><span>%S</span> <span>seconds </span> </div> ")
-        );
-    });
+    // $("#getting-started-d").countdown("2022/03/05", function (event) {
+    //     $(this).html(
+    //     event.strftime("<div><span>%D</span> <span>Days </span> </div> ")
+    //     );
+    // });
+    // $("#getting-started-h").countdown("2022/03/05", function (event) {
+    //     $(this).html(
+    //     event.strftime("<div><span>%H</span> <span>Hours </span> </div> ")
+    //     );
+    // });
+    // $("#getting-started-m").countdown("2022/03/05", function (event) {
+    //     $(this).html(
+    //     event.strftime("<div><span>%M</span> <span>minutes </span> </div> ")
+    //     );
+    // });
+    // $("#getting-started-s").countdown("2022/03/05", function (event) {
+    //     $(this).html(
+    //     event.strftime("<div><span>%S</span> <span>seconds </span> </div> ")
+    //     );
+    // });
 
     // Subscribe form
 	$(".newsletter-form").validator().on("submit", function (event) {

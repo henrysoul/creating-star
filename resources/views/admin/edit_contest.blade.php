@@ -94,13 +94,13 @@
                                     value="{{ old('registration_end_date') ?old('registration_end_date') : $contest->registration_end_date }}">
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        {{-- <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="">Cost per vote</label>
                                 <input class="form-control" name='cost_per_vote' required type="number"
                                     value="{{ old('cost_per_vote')?old('cost_per_vote'): $contest->cost_per_vote }}">
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="yes" class="form-label mr-3">Can register? </label>

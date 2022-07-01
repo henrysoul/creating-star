@@ -27,7 +27,7 @@ class CreateContestsTable extends Migration
             $table->date('stage3_end_date');
             $table->date('registration_start_date');
             $table->date('registration_end_date');
-            $table->integer('cost_per_vote');
+            // $table->integer('cost_per_vote');
             $table->enum('active_stage', [1, 2, 3])->default(1);
             $table->boolean('stage1_status')->default(0)->comment('status of stage opened or closed when 1 closed by admin');
             $table->boolean('stage2_status')->default(0)->comment('status of stage opened or closed when 1 closed by admin');

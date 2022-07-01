@@ -19,8 +19,13 @@
     </div>
 </section>
 
-
-<div class="login ptb-100">
+<style>
+    .form-label{
+        color:black;
+    }
+</style>
+<div class="login ptb-100" style="background-color:grey">
+    
     @if($can_register)
     <div class="container">
         <form method="POST" action="{{url('register_contestant')}}" enctype="multipart/form-data">
@@ -33,16 +38,33 @@
                         <input type="Text" class="form-control" name="child_name" value="{{old('child_name')}}"
                             required>
                     </div>
-                    <div class="col-lg-3 col-md-12 col-sm-12 col-12 mb-3">
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12 mb-3">
                         <label for="exampleInputEmail" class="form-label">Contestant's age</label>
-                        <input type="number" class="form-control" required name="age" value={{old('age')}}>
-                    </div>
-                    <div class="col-lg-3 col-md-12 col-sm-12 col-12 mb-3">
-                        <label for="yes" class="form-label mr-3">Is the contestant's age less than a year ? </label>
-                        <input type="radio" id="yes"  class="" required name="less_than_a_year"  value="Months old" >
-                        <label for="yes" class="form-label">Yes </label>
-                        <input type="radio" id="no"  class="" required name="less_than_a_year" value="Years old">
-                        <label for="no" class="form-label">No </label>
+                        <select class="form-control" required name="age">
+                            <option value="">--Select--</option>
+                            <option value="0 month">0 month</option>
+                            <option value="1 month">1 month</option>
+                            <option value="2 months">2 months</option>
+                            <option value="3 months">3 months</option>
+                            <option value="4 months">4 months</option>
+                            <option value="5 months">5 months</option>
+                            <option value="6 months">6 months</option>
+                            <option value="7 months">7 months</option>
+                            <option value="8 months">8 months</option>
+                            <option value="9 months">9 months</option>
+                            <option value="10 months">10 months</option>
+                            <option value="11 months">11 months</option>
+                            <option value="1 year">1 year</option>
+                            <option value="2 years">2 years</option>
+                            <option value="3 years">3 years</option>
+                            <option value="4 years">4 years</option>
+                            <option value="5 years">5 years</option>
+                            <option value="6 years">6 years</option>
+                            <option value="7 years">7 years</option>
+                            <option value="8 years">8 years</option>
+                            <option value="9 years">9 years</option>
+                            <option value="10 years">10 years</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
@@ -82,8 +104,10 @@
                 </div>
 
                 <div class="row mb-2">
-                    <label>Terms and Conditions</label>
-                    <label for="terms"><input id="terms" name="agree" type="checkbox" required> Click here to agree to our <a target="_blank" href="{{url('terms_conditions')}}"><span class="text-primary">terms and conditions</span></a> to proceed</label>
+                    <label class="form-label">Terms and Conditions</label>
+                    <label class="form-label" for="terms"><input id="terms" name="agree" type="checkbox" required> Click here to agree to
+                        our <a target="_blank" href="{{url('terms_conditions')}}"><span class="text-white">terms and
+                                conditions</span></a> to proceed</label>
                 </div>
 
                 <button type="submit" class="default-button default-button-3 "><span>Submit</span></button>

@@ -38,7 +38,41 @@ class AdminController extends Controller
     public function contestants($uuid)
     {
         $contests = Contest::where('uuid', $uuid)->with('contestants')->first();
-        return view('admin.contestants', compact('contests'));
+        return view('admin.contestants', compact('contests', 'uuid'));
+    }
+
+    public function admin_search_contestant(Request $request)
+    {
+        $contests = Contest::where('uuid', $request->uuid)
+            ->with(['contestants' => function ($q) use ($request) {
+                return $q->where('reg_number_copy', $request->contestant_id);
+            }])->first();
+        $uuid = $request->uuid;
+        return view('admin.contestants', compact('contests', 'uuid'));
+    }
+
+    public function add_vote(Request $request)
+    {
+        $contest = Contest::where('uuid', $request->contest_uuid)->first();
+        $current = $contest->active_stage;
+        $child = Child::where('uuid', $request->uuid)->first();
+        $votes = $request->vote;
+
+        if ($current == 1) {
+            $child->update(['stage1_votes' => intval($child->stage1_votes) + intval($votes)]);
+        } else if ($current == 2) {
+            $child->update(['stage1_votes' => intval($child->stage2_votes) + intval($votes)]);
+        } elseif ($current == 3) {
+            $child->update(['stage1_votes' => intval($child->stage3_votes) + intval($votes)]);
+        }
+        return redirect('contestants/' . $request->contest_uuid)->with("success", "Voted added successfully");
+    }
+
+    public function pix_download($uuid)
+    {
+        $filename = Child::where('uuid', $uuid)->first()->photo;
+        $path = storage_path("app/public/images/child/" . $filename);
+        return response()->download($path);
     }
 
     public function create_contestant($uuid)
@@ -147,34 +181,33 @@ class AdminController extends Controller
             $photo->storeAs('public/images/child', $generated_name);
         }
 
-        $stage1_vote = $child->stage1_votes;
-        $stage2_vote = $child->stage2_votes;
-        $stage3_vote = $child->stage3_votes;
+        // $stage1_vote = $child->stage1_votes;
+        // $stage2_vote = $child->stage2_votes;
+        // $stage3_vote = $child->stage3_votes;
 
-        if ($request->stage1_vote) {
-            $stage1_vote = $stage1_vote + intval($request->stage1_vote);
-        }
-        if ($request->stage2_vote) {
-            $stage1_vote = $stage2_vote + intval($request->stage2_vote);
-        }
-        if ($request->stage3_vote) {
-            $stage1_vote = $stage3_vote + intval($request->stage3_vote);
-        }
+        // if ($request->stage1_vote) {
+        //     $stage1_vote = $stage1_vote + intval($request->stage1_vote);
+        // }
+        // if ($request->stage2_vote) {
+        //     $stage1_vote = $stage2_vote + intval($request->stage2_vote);
+        // }
+        // if ($request->stage3_vote) {
+        //     $stage1_vote = $stage3_vote + intval($request->stage3_vote);
+        // }
 
         Child::where('uuid', $request->uuid)->update([
             'uuid' => Str::uuid(),
             'age' => $request->age,
             'gender' => $request->gender,
-            'parent_name' => $request->parent_name,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'address' => $request->address,
+            // 'parent_name' => $request->parent_name,
+            // 'phone' => $request->phone,
+            // 'email' => $request->email,
+            // 'address' => $request->address,
             'name' => $request->child_name,
             'photo' => $generated_name,
-            'less_than_a_year' => $request->less_than_a_year,
-            'stage1_votes' => $stage1_vote,
-            'stage2_votes' => $stage2_vote,
-            'stage3_votes' => $stage3_vote,
+            // 'stage1_votes' => $stage1_vote,
+            // 'stage2_votes' => $stage2_vote,
+            // 'stage3_votes' => $stage3_vote,
             'active' => $request->active ? 1 : 0
         ]);
 
@@ -277,7 +310,7 @@ class AdminController extends Controller
             $countdown->show = $request->show ? 1 : 0;
             $countdown->save();
         } else {
-            Countdown::create(['date' => $request->date, 'show' => $request->show ? 1 : 0]);
+            Countdown::create(['date' => $request->date, 'show' => $request->show ? 1 : 0, 'text' => $request->text]);
         }
         return back()->with("success", "Countdown updated successfully");
     }

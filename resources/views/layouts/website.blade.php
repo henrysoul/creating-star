@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{asset('assets/website/assets/css/dark.css')}}">
     <link rel="stylesheet" href="{{asset('assets/website/assets/css/responsive.css')}}">
     <title>Creating Star Concept</title>
-    <link rel="icon" type="image/png" href="{{asset('assets/website/assets/images/fav-icon.png')}}')}}">
+    <link rel="icon" type="image/png" href="{{asset('assets/website/assets/images/star.png')}}">
     @yield('head')
     <style>
         .float {

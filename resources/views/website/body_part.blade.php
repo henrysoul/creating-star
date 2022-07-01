@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="blog-details-text-area">
-                    <img class="details-main-img" src="{{asset('assets/website/assets/images/article/part.JPEG')}}"
+                    <img class="details-main-img" src="{{asset('assets/website/assets/images/article/part.jpeg')}}"
                         style="height:368px" alt="image">
                     <div class="bdt-text">
 

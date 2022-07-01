@@ -45,6 +45,9 @@
                             <li class="nav-item">
                                 <a href="contestants" class="nav-link ">Contestants</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="vote" class="nav-link ">Vote</a>
+                            </li>
                         </ul>
                         <div class="menu-sidebar">
                             <a class="default-button" href="{{url('register_contestant')}}">Register contestant <i
