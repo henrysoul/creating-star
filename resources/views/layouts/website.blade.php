@@ -49,8 +49,7 @@
     @yield('content')
 
     @include('partials.website.footer')
-    <a href="https://api.whatsapp.com/send?phone=23481363599938&amp;text=HelloStarConcepts!" class="float"
-        target="_blank">
+    <a href="https://wa.me/2349019603025/?text=HelloStarConcepts" class="float" target="_blank">
         <i class="fab fa-whatsapp my-float"></i>
     </a>
 </body>

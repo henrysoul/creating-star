@@ -26,6 +26,8 @@
                 <div class="d-flex align-items-center mb-4">
                     <h4 class="card-title">Contestants</h4>
                 </div>
+                {{-- <a class="btn btn-primary pull-left" href="{{ url('create_contestant') }}">Add new
+                    contestant</a> --}}
                 @include('partials.alerts')
                 <div class="table-responsive">
                     <table class="table">
@@ -89,9 +91,9 @@
                                             <a class="dropdown-item"
                                                 href="{{url('edit_contestant',[$contestants->uuid])}}">Edit
                                                 contestant</a>
-                                            <a class="dropdown-item"
+                                            {{-- <a class="dropdown-item"
                                                 href="{{url('pix_download',[$contestants->uuid])}}">Download
-                                                picture</a>
+                                                picture</a> --}}
                                         </div>
 
                                     </div>

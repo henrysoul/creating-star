@@ -13,6 +13,8 @@ use App\Exports\ChildrenExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\CreatingStarConceptsRegistrationNotification;
+use ZipArchive;
+use File;
 
 
 class AdminController extends Controller
@@ -61,9 +63,9 @@ class AdminController extends Controller
         if ($current == 1) {
             $child->update(['stage1_votes' => intval($child->stage1_votes) + intval($votes)]);
         } else if ($current == 2) {
-            $child->update(['stage1_votes' => intval($child->stage2_votes) + intval($votes)]);
+            $child->update(['stage2_votes' => intval($child->stage2_votes) + intval($votes)]);
         } elseif ($current == 3) {
-            $child->update(['stage1_votes' => intval($child->stage3_votes) + intval($votes)]);
+            $child->update(['stage3_votes' => intval($child->stage3_votes) + intval($votes)]);
         }
         return redirect('contestants/' . $request->contest_uuid)->with("success", "Voted added successfully");
     }
@@ -91,7 +93,6 @@ class AdminController extends Controller
         $this->validate($request, [
             'child_name' => ['required', 'min:6'],
             'age' => ['required'],
-            'less_than_a_year' => ['required'],
             'gender' => ['required'],
             'photo' => ['required', 'mimes:jpg,jpeg,png,jfif'],
             'parent_name' => ['required'],
@@ -122,8 +123,8 @@ class AdminController extends Controller
 
         if ($request->hasFile('photo')) {
             $photo = $request->photo;
-            $generated_name = uniqid() . '.' . $photo->extension();
-            $photo->storeAs('public/images/child', $generated_name);
+            $generated_name = $reg_copy . '.' . $photo->extension();
+            $photo->storeAs('public/images/child/' . $contest->uuid, $generated_name);
         }
 
         Child::create([
@@ -177,8 +178,8 @@ class AdminController extends Controller
 
         if ($request->hasFile('photo')) {
             $photo = $request->photo;
-            $generated_name = uniqid() . '.' . $photo->extension();
-            $photo->storeAs('public/images/child', $generated_name);
+            $generated_name = $child->reg_number_copy . '.' . $photo->extension();
+            $photo->storeAs('public/images/child/' . $child->contest->uuid, $generated_name);
         }
 
         // $stage1_vote = $child->stage1_votes;
@@ -218,9 +219,8 @@ class AdminController extends Controller
     {
         $contest = Contest::where('uuid', $uuid)->first();
         $current_stage = $contest->active_stage;
-
+        $children = Child::where(['contest_id' => $contest->id])->get();
         if ($current_stage == 1) {
-            $children = Child::where(['contest_id' => $contest->id])->get();
             foreach ($children as $child) {
                 if (intval($child->stage1_votes) > intval($contest->stage1_minimum_vote)) {
                     $stage1_extra = intval($child->stage1_votes) - intval($contest->stage1_minimum_vote);
@@ -234,19 +234,29 @@ class AdminController extends Controller
 
             $contest->update(['stage1_status' => 1]);
         }
+
         if ($current_stage == 2) {
             $contest->update(['stage2_status' => 1]);
-            if (intval($child->stage2_votes) >= intval($contest->stage2_minimum_vote)) {
-                $child->update(['passed_stage2' => 1]);
+            foreach ($children as $child) {
+                if (intval($child->stage2_votes) > intval($contest->stage2_minimum_vote)) {
+                    $stage2_extra_vote =  intval($child->stage2_votes) - intval($contest->stage2_minimum_vote);
+                    $extras =  intval($child->stage1_extra_votes) + intval($stage2_extra_vote);
+                    $child->update(['stage1_extra_votes' => $extras, 'stage3_votes' => $extras]);
+                }
+
+                if (intval($child->stage2_votes) >= intval($contest->stage2_minimum_vote)) {
+                    $child->update(['passed_stage2' => 1]);
+                }
             }
         }
+
         if ($current_stage == 3) {
             $contest->update(['stage3_status' => 1]);
         }
 
         $contest->update(['opened' => 0]);
 
-        return back()->with("success", 'Stage' . $current_stage . 'closed successfully');
+        return back()->with("success", 'Stage' . $current_stage . ' closed successfully');
     }
 
     public function download_records($uuid)
@@ -313,5 +323,22 @@ class AdminController extends Controller
             Countdown::create(['date' => $request->date, 'show' => $request->show ? 1 : 0, 'text' => $request->text]);
         }
         return back()->with("success", "Countdown updated successfully");
+    }
+
+    public function download_all_pix($uuid)
+    {
+        $zip = new ZipArchive;
+        $filename = 'contestants.zip';
+        if ($zip->open(public_path($filename), ZipArchive::CREATE) === TRUE) {
+
+            $files = File::files(public_path('storage/images/child/' . $uuid));
+            foreach ($files as $val) {
+                $relativeNameInZipFile = basename($val);
+                $zip->addFile($val, $relativeNameInZipFile);
+            }
+            $zip->close();
+        }
+
+        return response()->download(public_path($filename));
     }
 }

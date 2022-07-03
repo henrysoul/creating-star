@@ -9,4 +9,8 @@ class Child extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    public function contest(){
+        return $this->belongsTo(Contest::class);
+    }
 }

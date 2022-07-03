@@ -11,8 +11,10 @@
                 <form method="POST" action="{{url('update_contestant')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="login-form mb-3">
-                        <img class="mb-5" src="{{asset('storage/images/child/'.$contestant->photo)}}" alt="contestant image"
-                            style="width:433px !important;height:243px !important">
+
+                        <img class="mb-5"
+                            src="{{asset('storage/images/child/'.$contestant->contest->uuid.'/'.$contestant->photo)}}"
+                            alt="contestant image" style="width:433px !important;height:243px !important">
                         <div class="row">
                             <div class="col-lg-6 col-md-12 col-sm-12 col-12 mb-3">
                                 <label for="exampleInputUsername" class="form-label">Contestant's name</label>
@@ -110,8 +112,8 @@
                                     name="address">{{old('address')?old('address'):$contestant->address}}</textarea>
                             </div>
                         </div> --}}
-                        {{-- <div class="row">
-                            <div class="col-lg-3 col-md-12 col-sm-12 col-12 mb-3">
+                        <div class="row">
+                            {{-- <div class="col-lg-3 col-md-12 col-sm-12 col-12 mb-3">
                                 <label for="exampleInputEmail" class="form-label">Add stage1 vote</label>
                                 <input type="number" class="form-control" value="{{old('stage1_vote')}}"
                                     name="stage1_vote">
@@ -125,17 +127,18 @@
                                     class="form-label">Add stage3 vote</label>
                                 <input type="number" class="form-control" value="{{old('stage3_vote')}}"
                                     name="stage3_vote">
-                            </div>
+                            </div> --}}
                             <div class="col-lg-3 col-md-12 col-sm-12 col-12 mb-3">
                                 <div class="form-group">
-                                    <input type="checkbox" id="open" class="" name="opened" {{$contestant->active
-                                    ===1?'checked':""}} value="1" ><label for="open" class="form-label mr-3">Active
+                                    <input type="checkbox" id="open" class="" name="active"
+                                        {{$contestant->active ==1 ?'checked':""}} value="1" ><label for="open"
+                                        class="form-label mr-3">Active
                                     </label>
 
                                 </div>
                             </div>
 
-                        </div> --}}
+                        </div>
 
                         <input type="hidden" name="uuid" value={{$uuid}}>
                         <button class="btn btn-primary" type="submit">Submit</button>

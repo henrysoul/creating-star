@@ -7,7 +7,7 @@ use App\Models\Child;
 use App\Models\Contest;
 use App\Models\Countdown;
 use Illuminate\Support\Str;
-use Illuminate\validation\Rule;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\CreatingStarConceptsRegistrationNotification;
 
@@ -69,8 +69,8 @@ class WebsiteController extends Controller
 
         if ($request->hasFile('photo')) {
             $photo = $request->photo;
-            $generated_name = uniqid() . '.' . $photo->extension();
-            $photo->storeAs('public/images/child', $generated_name);
+            $generated_name = $reg_copy . '.' . $photo->extension();
+            $photo->storeAs('public/images/child/' . $contest->uuid, $generated_name);
         }
 
         Child::create([
@@ -92,7 +92,7 @@ class WebsiteController extends Controller
         Notification::route('mail', $request->email)
             ->notify(new CreatingStarConceptsRegistrationNotification($reg_copy));
 
-        return back()->with('success', 'Registration successful. You will receive a mail of your reg number');
+        return back()->with('success', 'Registration successful. You will receive a mail of your Contest ID');
     }
 
     public function child_right()
@@ -127,6 +127,10 @@ class WebsiteController extends Controller
     {
         return view('website.terms_conditions');
     }
+    public function how_to_vote()
+    {
+        return view('website.how_to_vote');
+    }
 
 
     public function contestants()
@@ -134,11 +138,11 @@ class WebsiteController extends Controller
         $contest = Contest::latest('id')->where('opened', 1)->first();
         $contest = $contest?->with(['contestants' => function ($q) use ($contest) {
             if ($contest->active_stage == 1) {
-                return $q->orderby('stage1_votes', 'DESC');
+                return $q->where('active', 1)->orderby('stage1_votes', 'DESC');
             } elseif ($contest->active_stage == 2) {
-                return $q->orderby('stage2_votes', 'DESC');
+                return $q->where('active', 1)->orderby('stage2_votes', 'DESC');
             } elseif ($contest->active_stage == 3) {
-                return $q->orderby('stage3_votes', 'DESC');
+                return $q->where('active', 1)->orderby('stage3_votes', 'DESC');
             }
         }])->first();
 
@@ -155,7 +159,7 @@ class WebsiteController extends Controller
     {
         $contest = Contest::latest('id')->where('opened', 1)->first();
         $contest = $contest?->with(['contestants' => function ($q) use ($request) {
-            return $q->where('reg_number_copy', $request->contestant_id);
+            return $q->where(['reg_number_copy' => $request->contestant_id, 'active' => 1]);
         }])->first();
 
 

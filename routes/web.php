@@ -23,6 +23,7 @@ Route::get('effect_of_bullying', 'WebsiteController@effect_of_bullying');
 Route::get('terms_conditions', 'WebsiteController@terms_conditions');
 Route::post('search_contestant', 'WebsiteController@search_contestant');
 Route::get('vote','WebsiteController@vote');
+Route::get('how_to_vote','WebsiteController@how_to_vote');
 Route::get('/', 'WebsiteController@welcome');
 
 
@@ -49,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('count_down', 'AdminController@count_down');
     Route::post('count_down', 'AdminController@save_down');
     Route::get('pix_download/{uuid}', 'AdminController@pix_download');
+    Route::get('download_all_pix/{uuid}', 'AdminController@download_all_pix');
     Route::get('bye', function () {
         Auth::logout();
     });

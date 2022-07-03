@@ -11,7 +11,9 @@
     <div class="container">
         <div class="uni-banner-text-area mt-4">
             <h1>Vote</h1>
+            <a href="how_to_vote "><h6 class="text-primary">Click here to learn how to vote successfully</h6></a>
         </div>
+
         <form method="post" action="{{url('search_contestant')}}">
             @csrf
             <center class="m-auto text-white">Search contestant</center><hr>

@@ -44,7 +44,7 @@
         <div class="col-lg-4 col-md-6 col-sm-12 col-12">
             <div class="blog-card">
                 <div class="blog-img-area">
-                    <a href="#"><img src="{{asset('storage/images/child/'.$contestant->photo)}}" alt="contestant image"
+                    <a href="#"><img src="{{asset('storage/images/child/'.$contest->uuid.'/'.$contestant->photo)}}" alt="contestant image"
                             style="width:433px !important;height:243px !important"></a>
                     <div class="blog-img-date">
                         <span>
@@ -73,12 +73,12 @@
                             </li>
                         </ul>
                     </div>
-                    <h5 class="text-light">Contest Id : {{$contestant->reg_number_copy}}</h5>
+                    <h5 class="text-light">Contest ID : {{$contestant->reg_number_copy}}</h5>
                     <h4><a href="{{url('child_right')}}">{{$contestant->name}}
                         </a></h4>
                     @if ($contest->active_stage > 1)
                     <div class="blog-date mb-2">
-                        <span class="text-light">Stage1 extra votes : {{$contestant->stage1_extra_votes}}</span>
+                        <span class="text-light">Extra votes : {{$contestant->stage1_extra_votes}}</span>
                     </div>
                     @endif
 

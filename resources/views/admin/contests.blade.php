@@ -7,7 +7,7 @@
                 <div class="d-flex align-items-center mb-4">
                     <h4 class="card-title">Contests</h4>
                 </div>
-                <a class="btn btn-primary pull-left" href="{{url('create_contest')}}">Add new
+                <a class="btn btn-primary pull-left" href="{{ url('create_contest') }}">Add new
                     contest</a>
                 @include('partials.alerts')
                 <div class="table-responsive">
@@ -49,11 +49,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($contests as $contest)
+                            @foreach ($contests as $contest)
                             <tr>
-                                <td>{{$contest->name}}</td>
-                                <td>{{$contest->stage1_minimum_vote}}</td>
-                                <td>{{$contest->stage2_minimum_vote}}</td>
+                                <td>{{ $contest->name }}</td>
+                                <td>{{ $contest->stage1_minimum_vote }}</td>
+                                <td>{{ $contest->stage2_minimum_vote }}</td>
                                 {{-- <td>{{$contest->stage1_start_date}}</td>
                                 <td>{{$contest->stage1_end_date}}</td>
                                 <td>{{$contest->stage2_start_date}}</td>
@@ -63,21 +63,36 @@
                                 <td>{{$contest->registration_start_date}}</td>
                                 <td>{{$contest->registration_end_date}}</td>
                                 <td>{{$contest->cost_per_vote}}</td> --}}
-                                <td>{{$contest->active_stage}}</td>
-                                <td>{{$contest->opened === 1 ? 'Opened':'Closed'}}</td>
-                                <td>{{$contest->can_register === 1 ? 'Can register':'Cannot register'}}</td>
+                                <td>{{ $contest->active_stage }}</td>
+                                <td>{{ $contest->opened === 1 ? 'Opened' : 'Closed' }}</td>
+                                <td>{{ $contest->can_register === 1 ? 'Can register' : 'Cannot register' }}</td>
                                 <td class="border-top-0 text-muted px-2 py-4 font-14">
-                                    <div class="btn-group">
+                                    <div class="btn-group"  style="position:absolute;z-index:9000000 !important">
                                         <button type="button" class="btn btn-primary dropdown-toggle"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Action
                                         </button>
-                                        <div class="dropdown-menu dropup" style="">
-                                            <a class="dropdown-item" href="{{url('edit_contest',[$contest->uuid])}}">Edit contest</a>
-                                            <a class="dropdown-item" onClick="return confirm('Are you sure you want to end stage {{$contest->active_stage}}?. You cannot undo this action')" href="{{url('close_current_stage',[$contest->uuid])}}">Close current stage</a>
-                                            <a class="dropdown-item" href="{{url('contestants',[$contest->uuid])}}">Contestants</a>
-                                            <a class="dropdown-item" href="{{url('create_contestant',[$contest->uuid])}}">Create Contestant</a>
-                                            <a class="dropdown-item" href="{{url('download_records',[$contest->uuid])}}">Download Contestant</a>
+                                        <div class="dropdown-menu dropup"
+                                           >
+                                            <a class="dropdown-item"
+                                                href="{{ url('edit_contest', [$contest->uuid]) }}">Edit contest</a>
+                                            <a class="dropdown-item"
+                                                onClick="return confirm('Are you sure you want to end stage {{ $contest->active_stage }}?. You cannot undo this action')"
+                                                href="{{ url('close_current_stage', [$contest->uuid]) }}">Close
+                                                current
+                                                stage</a>
+                                            <a class="dropdown-item"
+                                                href="{{ url('contestants', [$contest->uuid]) }}">Contestants</a>
+                                            <a class="dropdown-item"
+                                                href="{{ url('create_contestant', [$contest->uuid]) }}">Create
+                                                Contestant</a>
+                                            <a class="dropdown-item"
+                                                href="{{ url('download_records', [$contest->uuid]) }}">Download
+                                                Contestant</a>
+                                            <a class="dropdown-item"
+                                                href="{{ url('download_all_pix', [$contest->uuid]) }}">Download
+                                                Contestants
+                                                pics</a>
                                         </div>
 
                                     </div>
