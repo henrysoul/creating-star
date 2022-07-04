@@ -46,12 +46,12 @@
                     be redirected to a page requiring you to confirm your order, then you proceed to vote by filling
                     your card details in the Paystack Gateway.</li>
                 <p>(Paystack also have other payment options like “Bank Transfer, USSD and Bank Deposit” you can select
-                    any if these options
+                    any of these options
                     ( NOTE your card details are safe, no one has access to them)</p>
-                <li> Step 4: If you followed the above steps carefully and correctly, you vote will be automatically
+                <li> Step 4: If you followed the above steps carefully and correctly, your vote will be automatically
                     added and will reflect in the contestant page immediately.</li>
 
-                <h4>VOTING VIA BANK TRANSFER </h4>
+                <h4>VOTING VIA BANK TRANSFER </h4> 
                 <li>Step 1 : Go to the Contestant's page, select the contestant you want to vote for, use the
                     Contestant’s Name or ID as payment narration. </li>
                 <li>Step 2: Pay directly into the Bank Account below;</li>

@@ -688,22 +688,22 @@
         <div class="countdown-wrapper">
             <div class="row justify-content-center">
                 <div class="col-lg-2 col-md-3 col-sm-6 col-6">
-                    <div class="getting-start" id="getting-started-d">
+                    <div class="getting-start" >
                         <div><span id="days">00</span> <span>Days </span> </div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 col-6">
-                    <div class="getting-start" id="getting-started-h">
+                    <div class="getting-start" >
                         <div><span id="hrs">00</span> <span>Hours </span> </div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 col-6">
-                    <div class="getting-start" id="getting-started-m">
+                    <div class="getting-start">
                         <div><span id="mins">00</span> <span>minutes </span> </div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 col-6">
-                    <div class="getting-start" id="getting-started-s">
+                    <div class="getting-start" >
                         <div><span id="secs">00</span> <span>seconds </span> </div>
                     </div>
                 </div>

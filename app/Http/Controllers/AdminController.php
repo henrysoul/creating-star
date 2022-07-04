@@ -97,7 +97,7 @@ class AdminController extends Controller
             'photo' => ['required', 'mimes:jpg,jpeg,png,jfif'],
             'parent_name' => ['required'],
             'phone' => ['required', Rule::unique('children')->where('contest_id', $contest->id)],
-            'email' => ['email:rfc', 'required', Rule::unique('children')->where('contest_id', $contest->id)],
+            'email' => ['email:rfc,dns', 'required', Rule::unique('children')->where('contest_id', $contest->id)],
             'address' => ['required', 'min:10'],
         ], [
             'phone.unique' => 'Phone number is taken for this contest', 'email.unique' => 'Email is already used for this contest'
@@ -275,7 +275,9 @@ class AdminController extends Controller
 
         $amount = $request->amount;
         $votes = 0;
-        if ($amount == 1000) {
+        if ($amount == 500) {
+            $votes = 10;
+        } elseif ($amount == 1000) {
             $votes = 20;
         } elseif ($amount == 2500) {
             $votes = 50;

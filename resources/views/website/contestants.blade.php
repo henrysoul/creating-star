@@ -15,14 +15,17 @@
         </div>
         <form method="post" action="{{url('search_contestant')}}">
             @csrf
-            <center class="m-auto text-white">Search contestant</center><hr>
+            <center class="m-auto text-white">Search contestant</center>
+            <hr>
             <div class="row">
-                
+
                 <div class="col-lg-3 col-md-3 col-sm-3 col-12 mb-3">
-                    {{-- <input type="text" name="contestant_id" class="form-control" placeholder="Contestant Id" /> --}}
+                    {{-- <input type="text" name="contestant_id" class="form-control" placeholder="Contestant Id" />
+                    --}}
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-12 mb-3">
-                    <input type="text" name="contestant_id" class="form-control" required placeholder="Enter Contestant Id" />
+                    <input type="text" name="contestant_id" class="form-control" required
+                        placeholder="Enter Contestant Id" />
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 col-12 mb-3">
                     <button type="submit" class="btn btn-primary">Search</button>
@@ -44,8 +47,8 @@
         <div class="col-lg-4 col-md-6 col-sm-12 col-12">
             <div class="blog-card">
                 <div class="blog-img-area">
-                    <a href="#"><img src="{{asset('storage/images/child/'.$contest->uuid.'/'.$contestant->photo)}}" alt="contestant image"
-                            style="width:433px !important;height:243px !important"></a>
+                    <a href="#"><img src="{{asset('storage/images/child/'.$contest->uuid.'/'.$contestant->photo)}}"
+                            alt="contestant image" style="width:433px !important;height:243px !important"></a>
                     <div class="blog-img-date">
                         <span>
                             @php
@@ -76,7 +79,7 @@
                     <h5 class="text-light">Contest ID : {{$contestant->reg_number_copy}}</h5>
                     <h4><a href="{{url('child_right')}}">{{$contestant->name}}
                         </a></h4>
-                    @if ($contest->active_stage > 1)
+                    @if ($contest->active_stage > 0 && $contest->active_stage !=3)
                     <div class="blog-date mb-2">
                         <span class="text-light">Extra votes : {{$contestant->stage1_extra_votes}}</span>
                     </div>

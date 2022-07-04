@@ -21,7 +21,7 @@
                             <textarea name="text" class="form-control">{{$countdown?$countdown->text:""}}</textarea>
                         </div>
                         <div class="col-md-6">
-                            <label><input type="checkbox" class="" name="show" {{$countdown?->show===1?"checked":"" }}
+                            <label><input type="checkbox" class="" name="show" {{$countdown?->show==1?"checked":"" }}
                                 name="status" />
                                 Show
                                 countdown</label>

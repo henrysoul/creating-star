@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" style="overflow:scroll!important;">
                 <div class="d-flex align-items-center mb-4">
                     <h4 class="card-title">Contests</h4>
                 </div>
@@ -45,6 +45,8 @@
                                 </th>
                                 <th class="border-0 font-14 font-weight-medium text-muted">Registration status
                                 </th>
+                                <th class="border-0 font-14 font-weight-medium text-muted">Download
+                                </th>
                                 <th class="border-0 font-14 font-weight-medium text-muted">Action</th>
                             </tr>
                         </thead>
@@ -66,14 +68,21 @@
                                 <td>{{ $contest->active_stage }}</td>
                                 <td>{{ $contest->opened === 1 ? 'Opened' : 'Closed' }}</td>
                                 <td>{{ $contest->can_register === 1 ? 'Can register' : 'Cannot register' }}</td>
+                                <td>  <a class="btn bt-primary"
+                                                href="{{ url('download_records', [$contest->uuid]) }}">Download
+                                                Contestant</a>
+                                            <a class="btn btn-secondary"
+                                                href="{{ url('download_all_pix', [$contest->uuid]) }}">Download
+                                                Contestants
+                                                pics</a></td>
                                 <td class="border-top-0 text-muted px-2 py-4 font-14">
-                                    <div class="btn-group"  style="position:absolute;z-index:9000000 !important">
+                                    <div class="btn-group"  style="z-index:100000!important"  >
                                         <button type="button" class="btn btn-primary dropdown-toggle"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Action
                                         </button>
-                                        <div class="dropdown-menu dropup"
-                                           >
+                                        <div class="dropdown-menu dropup "
+                                         >
                                             <a class="dropdown-item"
                                                 href="{{ url('edit_contest', [$contest->uuid]) }}">Edit contest</a>
                                             <a class="dropdown-item"
@@ -86,13 +95,6 @@
                                             <a class="dropdown-item"
                                                 href="{{ url('create_contestant', [$contest->uuid]) }}">Create
                                                 Contestant</a>
-                                            <a class="dropdown-item"
-                                                href="{{ url('download_records', [$contest->uuid]) }}">Download
-                                                Contestant</a>
-                                            <a class="dropdown-item"
-                                                href="{{ url('download_all_pix', [$contest->uuid]) }}">Download
-                                                Contestants
-                                                pics</a>
                                         </div>
 
                                     </div>
