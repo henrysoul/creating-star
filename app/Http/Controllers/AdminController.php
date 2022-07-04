@@ -293,7 +293,7 @@ class AdminController extends Controller
             $votes = 2000;
         }
 
-        $stage = Contest::where(['opened' => 1])->first()->active_stage;
+        $stage = Contest::orderby('id', "DESC")->where('opened', 1)->first()->active_stage;
         $child = Child::where('uuid', $request->uuid)->first();
 
         if ($stage == 1) {

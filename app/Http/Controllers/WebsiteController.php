@@ -135,16 +135,17 @@ class WebsiteController extends Controller
 
     public function contestants()
     {
-        $contest = Contest::latest('id')->where('opened', 1)->first();
-        $contest = $contest?->with(['contestants' => function ($q) use ($contest) {
-            if ($contest->active_stage == 1) {
-                return $q->where('active', 1)->orderby('stage1_votes', 'DESC');
-            } elseif ($contest->active_stage == 2) {
-                return $q->where('active', 1)->orderby('stage2_votes', 'DESC');
-            } elseif ($contest->active_stage == 3) {
-                return $q->where('active', 1)->orderby('stage3_votes', 'DESC');
+        $res = Contest::orderby('id',"DESC")->where('opened',1)->first();
+        $contest = $res?->with(['contestants' => function ($q) use ($res) {
+            // dd($contest);
+            if ($res->active_stage == 1) {
+                 $q->where('active', 1)->orderby('stage1_votes', 'DESC');
+            } elseif ($res->active_stage == 2) {
+                 $q->where('active', 1)->orderby('stage2_votes', 'DESC');
+            } elseif ($res->active_stage == 3) {
+                 $q->where('active', 1)->orderby('stage3_votes', 'DESC');
             }
-        }])->first();
+        }])->orderby('id',"DESC")->first();
 
 
         return view('website.contestants', compact('contest'));
