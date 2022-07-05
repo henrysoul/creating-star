@@ -158,10 +158,10 @@ class WebsiteController extends Controller
 
     public function search_contestant(Request $request)
     {
-        $contest = Contest::latest('id')->where('opened', 1)->first();
+        $contest = Contest::orderby('id',"DESC")->first();
         $contest = $contest?->with(['contestants' => function ($q) use ($request) {
             return $q->where(['reg_number_copy' => $request->contestant_id, 'active' => 1]);
-        }])->first();
+        }])->orderby('id',"DESC")->first();
 
 
         return view('website.contestants', compact('contest'));

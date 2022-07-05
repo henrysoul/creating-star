@@ -384,13 +384,13 @@
                             <h4>David Monterio</h4>
                             <p>Back End Developer</p>
                             <ul>
-                                <li><a href="https://www.facebook.com/" target="_blank"><i
+                                <li><a href="https://web.facebook.com/Creating-Stars-Concept-101987579147010" target="_blank"><i
                                             class="fab fa-facebook-f"></i></a></li>
                                 <li><a href="https://www.linkedin.com/" target="_blank"><i
                                             class="fab fa-linkedin-in"></i></a></li>
                                 <li><a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
                                 </li>
-                                <li><a href="https://www.instagram.com/" target="_blank"><i
+                                <li><a href="https://www.instagram.com/creatingstarsconcept/" target="_blank"><i
                                             class="fab fa-instagram"></i></a></li>
                             </ul>
                         </div>
@@ -864,7 +864,7 @@
                     <div class="contact-card">
                         <h4>Socials:</h4>
                         <ul>
-                            <div class="row"><a href="https://www.facebook.com/" target="_blank"><i
+                            <div class="row"><a href="https://web.facebook.com/Creating-Stars-Concept-101987579147010" target="_blank"><i
                                         class="fab fa-facebook-f text-light "></i><span class="ps-2">Creating
                                         Stars
                                         Concept</span></a></div>

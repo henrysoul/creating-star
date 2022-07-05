@@ -105,19 +105,27 @@
                             <div class="form-group">
                                 <label for="yes" class="form-label mr-3">Can register? </label>
                                 <input type="radio" id="yes" class="" required name="can_register"
-                                    {{$contest->can_register ===1?'checked':""}} value="1" >
+                                    {{$contest->can_register ==1?'checked':""}} value="1" >
                                 <label for="yes" class="form-label">Yes </label>
                                 <input type="radio" id="no" class="" required name="can_register"
-                                    {{$contest->can_register ===0?'checked':""}} value="0">
+                                    {{$contest->can_register ==0?'checked':""}} value="0">
                                 <label for="no" class="form-label">No </label>
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <label for="open" class="form-label mr-3">Contest open status </label>
                                 <input type="checkbox" id="open" class="" name="opened" {{$contest->opened
-                                ===1?'checked':""}} value="1" >
+                                ==1?'checked':""}} value="1" >
+
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="canvote" class="form-label mr-3">Can vote </label>
+                                <input type="checkbox" id="canvote" class="" name="canvote" {{$contest->canvote
+                                ==1?'checked':""}} value="1" >
 
                             </div>
                         </div>

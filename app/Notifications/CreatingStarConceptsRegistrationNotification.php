@@ -41,10 +41,12 @@ class CreatingStarConceptsRegistrationNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('Your registration on Creating Star Concept was successful')
-            ->line('Your Contest ID is ' . $this->reg_code)
-            // ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->line('Congratulations, your registration for Creating Stars Contest was successful.')
+            ->line('Your Contestant ID is ' . $this->reg_code)
+            ->line('The next stage of the contest would be communicated to you shortly.')
+            ->line('Kindly follow our social media handles for updates')
+            ->line('https://www.instagram.com/creatingstarsconcept/')
+            ->line('https://web.facebook.com/Creating-Stars-Concept-101987579147010');
     }
 
     /**

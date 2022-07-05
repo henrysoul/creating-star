@@ -8,7 +8,7 @@ use App\Models\Payment;
 use Illuminate\Support\Str;
 use App\Models\Child;
 use App\Models\Countdown;
-use Illuminate\validation\Rule;
+use Illuminate\Validation\Rule;
 use App\Exports\ChildrenExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Notification;
@@ -45,7 +45,9 @@ class AdminController extends Controller
 
     public function admin_search_contestant(Request $request)
     {
-        $contests = Contest::where('uuid', $request->uuid)
+         $contest = Contest::orderby('id',"DESC")->first();
+         
+        $contests = Contest::where(['uuid'=> $request->uuid,'id'=>$contest->id])
             ->with(['contestants' => function ($q) use ($request) {
                 return $q->where('reg_number_copy', $request->contestant_id);
             }])->first();
@@ -158,6 +160,10 @@ class AdminController extends Controller
     {
         if (!$request->opened) {
             $request['opened'] = 0;
+        }
+        
+        if(!$request->canvote){
+            $request['canvote']=0;
         }
 
         Contest::where('uuid', $request->uuid)->update($request->except('_token'));
@@ -293,7 +299,7 @@ class AdminController extends Controller
             $votes = 2000;
         }
 
-        $stage = Contest::orderby('id', "DESC")->where('opened', 1)->first()->active_stage;
+        $stage = Contest::orderby('id',"DESC")->where('opened',1)->first()->active_stage;
         $child = Child::where('uuid', $request->uuid)->first();
 
         if ($stage == 1) {
@@ -316,10 +322,12 @@ class AdminController extends Controller
 
     public function save_down(Request $request)
     {
+        // dd($request->all());
         $countdown = Countdown::first();
         if ($countdown) {
             $countdown->date = $request->date;
             $countdown->show = $request->show ? 1 : 0;
+            $countdown->text = $request->text;
             $countdown->save();
         } else {
             Countdown::create(['date' => $request->date, 'show' => $request->show ? 1 : 0, 'text' => $request->text]);
@@ -331,16 +339,17 @@ class AdminController extends Controller
     {
         $zip = new ZipArchive;
         $filename = 'contestants.zip';
-        if ($zip->open(public_path($filename), ZipArchive::CREATE) === TRUE) {
-
-            $files = File::files(public_path('storage/images/child/' . $uuid));
+        if ($zip->open(storage_path($filename), ZipArchive::CREATE) === TRUE) {
+            $files = File::files(storage_path("app/public/images/child/" . $uuid));
             foreach ($files as $val) {
                 $relativeNameInZipFile = basename($val);
                 $zip->addFile($val, $relativeNameInZipFile);
             }
             $zip->close();
         }
-
-        return response()->download(public_path($filename));
+        
+        // $path = storage_path("app/public/images/child/" . $filename);
+        // return response()->download($path);
+       return response()->download(storage_path($filename));
     }
 }

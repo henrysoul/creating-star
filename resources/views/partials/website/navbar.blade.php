@@ -32,7 +32,7 @@
                                     <li class="nav-item"><a href="{{url('importance_of_child_right')}}" class="nav-link">Importance of Child Right</a></li>
                                     <li class="nav-item"><a href="{{url('child_trafficking')}}" class="nav-link">Child Trafficking</a></li>
                                     <li class="nav-item"><a href="{{url('effect_of_bullying')}}" class="nav-link">Effect of Bullying on Mental Health</a></li>
-                                    <li class="nav-item"><a href="{{url('effect_of_bullying')}}" class="nav-link">Teach your Child Body Part Early</a></li>
+                                    <li class="nav-item"><a href="{{url('body_part')}}" class="nav-link">Teach your Child Body Part Early</a></li>
                                     </ul>
                             </li>
                             {{-- <li class="nav-item">
