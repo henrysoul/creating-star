@@ -339,6 +339,10 @@ class AdminController extends Controller
     {
         $zip = new ZipArchive;
         $filename = 'contestants.zip';
+        if(file_exists(storage_path($filename))){
+            unlink(storage_path($filename));
+          }
+          
         if ($zip->open(storage_path($filename), ZipArchive::CREATE) === TRUE) {
             $files = File::files(storage_path("app/public/images/child/" . $uuid));
             foreach ($files as $val) {
@@ -348,8 +352,6 @@ class AdminController extends Controller
             $zip->close();
         }
         
-        // $path = storage_path("app/public/images/child/" . $filename);
-        // return response()->download($path);
        return response()->download(storage_path($filename));
     }
 }
