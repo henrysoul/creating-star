@@ -25,7 +25,7 @@
                                 <label for="exampleInputEmail" class="form-label">Contestant's age</label>
                                 <select class="form-control" required name="age">
                                     <option value="">--Select--</option>
-                                    <option value="0 month" {{$contestant->age=="0 month" ? "selected" :""}}>0 month
+                                    <option value="0 month" {{$contestant->age=="less than a month" ? "selected" :""}}>less than a month
                                     </option>
                                     <option value="1 month" {{$contestant->age=="1 month" ? "selected" :""}}>1 month
                                     </option>

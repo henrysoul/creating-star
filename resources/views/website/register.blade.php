@@ -42,7 +42,7 @@
                         <label for="exampleInputEmail" class="form-label">Contestant's age</label>
                         <select class="form-control" required name="age">
                             <option value="">--Select--</option>
-                            <option value="0 month">0 month</option>
+                            <option value="less than a month">less than a month</option>
                             <option value="1 month">1 month</option>
                             <option value="2 months">2 months</option>
                             <option value="3 months">3 months</option>

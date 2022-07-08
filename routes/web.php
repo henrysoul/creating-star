@@ -25,6 +25,8 @@ Route::post('search_contestant', 'WebsiteController@search_contestant');
 Route::get('vote','WebsiteController@vote');
 Route::get('how_to_vote','WebsiteController@how_to_vote');
 Route::get('/', 'WebsiteController@welcome');
+Route::post('/pay','AdminController@redirectToGateway')->name('pay');
+Route::get('/payment/callback','AdminController@handleGatewayCallback');
 
 
 
@@ -56,6 +58,6 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-Route::get('contestants', 'WebsiteController@contestants');
+Route::get('contestants', 'WebsiteController@contestants')->name('contestants');
 
 require __DIR__ . '/auth.php';

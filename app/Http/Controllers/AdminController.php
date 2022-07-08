@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Notification;
 use App\Notifications\CreatingStarConceptsRegistrationNotification;
 use ZipArchive;
 use File;
+use Illuminate\Support\Facades\Redirect;
+use Paystack;
 
 
 class AdminController extends Controller
@@ -45,9 +47,9 @@ class AdminController extends Controller
 
     public function admin_search_contestant(Request $request)
     {
-         $contest = Contest::orderby('id',"DESC")->first();
-         
-        $contests = Contest::where(['uuid'=> $request->uuid,'id'=>$contest->id])
+        $contest = Contest::orderby('id', "DESC")->first();
+
+        $contests = Contest::where(['uuid' => $request->uuid, 'id' => $contest->id])
             ->with(['contestants' => function ($q) use ($request) {
                 return $q->where('reg_number_copy', $request->contestant_id);
             }])->first();
@@ -161,9 +163,9 @@ class AdminController extends Controller
         if (!$request->opened) {
             $request['opened'] = 0;
         }
-        
-        if(!$request->canvote){
-            $request['canvote']=0;
+
+        if (!$request->canvote) {
+            $request['canvote'] = 0;
         }
 
         Contest::where('uuid', $request->uuid)->update($request->except('_token'));
@@ -243,12 +245,14 @@ class AdminController extends Controller
 
         if ($current_stage == 2) {
             $contest->update(['stage2_status' => 1]);
+
             foreach ($children as $child) {
+                $extras = intval($child->stage1_extra_votes);
                 if (intval($child->stage2_votes) > intval($contest->stage2_minimum_vote)) {
                     $stage2_extra_vote =  intval($child->stage2_votes) - intval($contest->stage2_minimum_vote);
                     $extras =  intval($child->stage1_extra_votes) + intval($stage2_extra_vote);
-                    $child->update(['stage1_extra_votes' => $extras, 'stage3_votes' => $extras]);
                 }
+                $child->update(['stage1_extra_votes' => $extras, 'stage3_votes' => $extras]);
 
                 if (intval($child->stage2_votes) >= intval($contest->stage2_minimum_vote)) {
                     $child->update(['passed_stage2' => 1]);
@@ -270,16 +274,32 @@ class AdminController extends Controller
         return Excel::download(new ChildrenExport($uuid), 'contestants.xlsx');
     }
 
-    public function payment_success(Request $request)
+    public function redirectToGateway(Request $request)
     {
+        try {
+            return Paystack::getAuthorizationUrl()->redirectNow();
+        } catch (\Exception $e) {
+            dd($e);
+            return Redirect::back()->with('error', 'The paystack token has expired. Please refresh the page and try again.');
+        }
+    }
+    
+      /**
+     * Obtain Paystack payment information
+     * @return void
+     */
+    public function handleGatewayCallback()
+    {
+        $paymentDetails = Paystack::getPaymentData();
+
+        $amount = $paymentDetails['data']['amount']/100;
         Payment::create([
-            'contestant_uuid' => $request->uuid,
-            'amount' => $request->amount,
-            'voter_phone' => $request->phone,
-            'api_response' => json_encode($request->response)
+            'contestant_uuid' =>  $paymentDetails['data']['metadata']['uuid'],
+            'amount' => $amount,
+            'voter_phone' => "07062060119",
+            'api_response' => json_encode($paymentDetails)
         ]);
 
-        $amount = $request->amount;
         $votes = 0;
         if ($amount == 500) {
             $votes = 10;
@@ -299,8 +319,8 @@ class AdminController extends Controller
             $votes = 2000;
         }
 
-        $stage = Contest::orderby('id',"DESC")->where('opened',1)->first()->active_stage;
-        $child = Child::where('uuid', $request->uuid)->first();
+        $stage = Contest::orderby('id', "DESC")->where('opened', 1)->first()->active_stage;
+        $child = Child::where('uuid', $paymentDetails['data']['metadata']['uuid'])->first();
 
         if ($stage == 1) {
             $child->update(['stage1_votes' => $child->stage1_votes + $votes]);
@@ -309,9 +329,11 @@ class AdminController extends Controller
         } elseif ($stage == 3) {
             $child->update(['stage3_votes' => $child->stage3_votes + $votes]);
         }
-
-        return response()->json(['status' => true]);
+        
+        return redirect()->route('contestants');
     }
+
+    
 
     public function count_down()
     {
@@ -339,10 +361,10 @@ class AdminController extends Controller
     {
         $zip = new ZipArchive;
         $filename = 'contestants.zip';
-        if(file_exists(storage_path($filename))){
+        if (file_exists(storage_path($filename))) {
             unlink(storage_path($filename));
-          }
-          
+        }
+
         if ($zip->open(storage_path($filename), ZipArchive::CREATE) === TRUE) {
             $files = File::files(storage_path("app/public/images/child/" . $uuid));
             foreach ($files as $val) {
@@ -351,7 +373,7 @@ class AdminController extends Controller
             }
             $zip->close();
         }
-        
-       return response()->download(storage_path($filename));
+
+        return response()->download(storage_path($filename));
     }
 }
